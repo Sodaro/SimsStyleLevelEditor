@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public static class GridUtilities
@@ -25,9 +23,5 @@ public static class GridUtilities
         worldPosition.x = Mathf.Floor(worldPosition.x / TileSize) * TileSize + TileHalfSize;
         worldPosition.z = Mathf.Floor(worldPosition.z / TileSize) * TileSize + TileHalfSize;
         return worldPosition;
-    }
-    public static void SnapToTileCenter(this Vector3 worldPosition)
-    {
-        worldPosition = GetTileCenterFromWorld(worldPosition);
     }
 }
