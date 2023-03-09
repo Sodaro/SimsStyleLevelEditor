@@ -1,48 +1,30 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(PlayerInput))]
 public class CameraController : MonoBehaviour
 {
     [SerializeField] private float _moveSpeed = 10f;
     [SerializeField] private float _zoomSpeed = 10f;
-
-    private PlayerInput _playerInput;
-    private InputAction _moveAction;
-    private InputAction _zoomAction;
+    [SerializeField] private InputAction _moveAction;
+    [SerializeField] private InputAction _zoomAction;
     private Vector3 _velocity = Vector3.zero;
 
     private Transform _cameraTransform;
 
     private void Awake()
     {
-        _playerInput = GetComponent<PlayerInput>();
         _cameraTransform = Camera.main.transform;
-    }
-
-    private void OnEnable()
-    {
-
-        _zoomAction = _playerInput.actions["zoom"];
-        _moveAction = _playerInput.actions["move"];
-
         _moveAction.Enable();
         _zoomAction.Enable();
     }
-    private void OnDisable()
-    {
-        _moveAction.Disable();
-        _zoomAction.Disable();
-    }
 
-
-    void UpdateVelocity()
+    private void UpdateVelocity()
     {
         var moveDir = _moveAction.ReadValue<Vector2>();
         _velocity = Vector3.Normalize(transform.forward * moveDir.y + transform.right * moveDir.x) * _moveSpeed;
     }
 
-    void UpdateZoom()
+    private void UpdateZoom()
     {
         var zoomDir = _zoomAction.ReadValue<float>();
         if (zoomDir > 0)
@@ -57,7 +39,7 @@ public class CameraController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         UpdateVelocity();
         UpdateZoom();

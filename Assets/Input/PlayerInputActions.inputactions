@@ -2,7 +2,7 @@
     "name": "PlayerInputActions",
     "maps": [
         {
-            "name": "Player",
+            "name": "Gameplay",
             "id": "a4bf8a5d-8437-44ef-84ac-2965b7382c81",
             "actions": [
                 {
@@ -33,9 +33,9 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Click",
-                    "type": "PassThrough",
-                    "id": "050e8c9c-61db-4a26-b6c9-092fca4cc746",
+                    "name": "MouseClick",
+                    "type": "Button",
+                    "id": "34695509-0c93-4368-bac8-ae9a733ee660",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -166,45 +166,12 @@
                 },
                 {
                     "name": "",
-                    "id": "fb745c30-8bdc-4871-bca1-904508778928",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "Press(behavior=2)",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "Click",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "aac864ee-65d6-4105-b5f7-26b94fcca3bb",
-                    "path": "<Pen>/tip",
+                    "id": "f38b1ff7-a3ea-4f75-a8f3-b84da93b2c3e",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Click",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "2e749fca-cf53-4546-b0ef-94eb7d450602",
-                    "path": "<Touchscreen>/touch*/press",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Touch",
-                    "action": "Click",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "97c34ba7-8a51-4708-af4d-87814bf9e4ca",
-                    "path": "<XRController>/trigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "XR",
-                    "action": "Click",
+                    "action": "MouseClick",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

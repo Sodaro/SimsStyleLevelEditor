@@ -11,9 +11,8 @@ public class PlacementGrid : MonoBehaviour
 
     [SerializeField] private Transform _targetTransform;
     [SerializeField] private bool _snapToCenter = false;
-
-    private PlayerInput _playerInput;
-    private InputAction _clickAction;
+    [SerializeField] private bool _buildRooms = false;
+    [SerializeField] private InputAction _clickAction;
 
     private Vector3? _buildStartPoint = Vector3.zero;
     private Vector3? _buildEndPoint = Vector3.zero;
@@ -22,14 +21,9 @@ public class PlacementGrid : MonoBehaviour
 
     private Bounds _gridBounds;
 
-    public bool IsInsideGridBounds(Vector3 worldPosition)
-    {
-        return false;
-    }
-
     private void Awake()
     {
-        _playerInput = GetComponent<PlayerInput>();
+        _clickAction.Enable();
         CreateLineMaterial();
         plane = new Plane(Vector3.up, 0);
         int sideLength = _gridSize + 1;
@@ -51,82 +45,67 @@ public class PlacementGrid : MonoBehaviour
             int lineOffset = i * GridUtilities.TileSize;
             _gridVertices[index] = (new Vector3(initialOffset + lineOffset, 0, initialOffset), new Vector3(initialOffset + lineOffset, 0, initialOffset + lineLength));
         }
-
-
         _gridBounds = new Bounds(Vector3.zero, new Vector3(lineLength, lineLength, lineLength));
     }
-
-    private void OnEnable()
+    bool TryGetMousePositionOnGrid(out Vector3? mousePosition)
     {
-        _clickAction = _playerInput.actions["click"];
-        _clickAction.Enable();
-        _clickAction.started += OnClickPressed;
-        _clickAction.canceled += OnClickReleased;
-    }
-    private void OnDisable()
-    {
-        _clickAction.Disable();
-        _clickAction.started -= OnClickPressed;
-        _clickAction.canceled -= OnClickReleased;
-    }
-
-
-    private void OnClickPressed(InputAction.CallbackContext context)
-    {
+        mousePosition = null;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (plane.Raycast(ray, out float distance))
-        {
-            Vector3 worldPos = ray.GetPoint(distance);
-            if (_snapToCenter)
-            {
-                var desiredPosition = GridUtilities.GetTileCenterFromWorldXZ(worldPos);
-                if (_gridBounds.Contains(desiredPosition))
-                {
-                    _buildStartPoint = desiredPosition;
-                }
-            }
-            else
-            {
-                var desiredPosition = GridUtilities.GetGridPosition(worldPos);
-                if (_gridBounds.Contains(desiredPosition))
-                {
-                    _buildStartPoint = desiredPosition;
-                }
-            }
-        }
+        if (!plane.Raycast(ray, out float distance)) { return false; }
+
+        Vector3 worldPos = ray.GetPoint(distance);
+        Vector3 desiredPosition = _snapToCenter ? GridUtilities.GetTileCenterFromWorldXZ(worldPos) : GridUtilities.GetGridPosition(worldPos);
+        if (!_gridBounds.Contains(desiredPosition)) { return false; }
+
+        mousePosition = desiredPosition;
+        return true;
     }
 
-    private void OnClickReleased(InputAction.CallbackContext context)
+    private void HandleMousePressed()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (plane.Raycast(ray, out float distance))
-        {
-            Vector3 worldPos = ray.GetPoint(distance);
-            if (_snapToCenter)
-            {
-                var desiredPosition = GridUtilities.GetTileCenterFromWorldXZ(worldPos);
-                if (_gridBounds.Contains(desiredPosition))
-                {
-                    _buildEndPoint = desiredPosition;
-                }
-            }
-            else
-            {
-                var desiredPosition = GridUtilities.GetGridPosition(worldPos);
-                if (_gridBounds.Contains(desiredPosition))
-                {
-                    _buildEndPoint = desiredPosition;
-                }
-            }
-        }
+        TryGetMousePositionOnGrid(out _buildStartPoint);
+    }
+    private void HandleMouseReleased()
+    {
+        if (!TryGetMousePositionOnGrid(out _buildEndPoint)) { return; }
+
         if (_buildEndPoint != null && _buildStartPoint != null)
         {
-            var diff = _buildEndPoint - _buildStartPoint;
-            var center = (_buildStartPoint + _buildEndPoint) / 2;
-            var instance = Instantiate(_wallPrefab, center.Value, Quaternion.identity, transform.parent);
-            instance.transform.localScale = new Vector3(Mathf.Abs(diff.Value.x), 1, Mathf.Abs(diff.Value.z));
+            if (_buildRooms)
+            {
+                var start = _buildStartPoint.Value;
+                var end = _buildEndPoint.Value;
+                var minZ = Mathf.Min(start.z, end.z);
+                var maxZ = Mathf.Max(start.z, end.z);
+                var minX = Mathf.Min(start.x, end.x);
+                var maxX = Mathf.Max(start.x, end.x);
+                var tl = new Vector3(minX, start.y, maxZ);
+                var tr = new Vector3(maxX, start.y, maxZ);
+                var bl = new Vector3(minX, start.y, minZ);
+                var br = new Vector3(maxX, start.y, minZ);
+                PlaceWall(tl, tr);
+                PlaceWall(tr, br);
+                PlaceWall(br, bl);
+                PlaceWall(bl, tl);
+            }
+            else
+            {
+                PlaceWall(_buildStartPoint.Value, _buildEndPoint.Value);
+            }
+            
             _buildEndPoint = null;
             _buildStartPoint = null;
+        }
+    }
+
+    void PlaceWall(Vector3 startPoint, Vector3 endPoint)
+    {
+        var diff = endPoint - startPoint;
+        var count = diff.magnitude / GridUtilities.TileSize;
+        for (int i = 0; i < count; i++)
+        {
+            var rot = Quaternion.LookRotation(diff.normalized, Vector3.up);
+            var instance = Instantiate(_wallPrefab, startPoint + diff.normalized * i * GridUtilities.TileSize, rot, transform.parent);
         }
     }
 
@@ -165,28 +144,22 @@ public class PlacementGrid : MonoBehaviour
 
     private void Update()
     {
-        float distance;
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (plane.Raycast(ray, out distance))
+        Vector3? mouseGridPosition = null;
+        if (!TryGetMousePositionOnGrid(out mouseGridPosition))
         {
-            Vector3 worldPos = ray.GetPoint(distance);
-            if (_snapToCenter)
-            {
-                var desiredPosition = GridUtilities.GetTileCenterFromWorldXZ(worldPos);
-                if (_gridBounds.Contains(desiredPosition))
-                {
-                    _targetTransform.position = desiredPosition;
-                }
-            }
-            else
-            {
-                var desiredPosition = GridUtilities.GetGridPosition(worldPos);
-                if (_gridBounds.Contains(desiredPosition))
-                {
-                    _targetTransform.position = desiredPosition;
-                }
-            }
+            return;
         }
+
+        if (_clickAction.WasPressedThisFrame())
+        {
+            HandleMousePressed();
+        }
+        else if (_clickAction.WasReleasedThisFrame())
+        {
+            HandleMouseReleased();
+        }
+
+        _targetTransform.position = mouseGridPosition.Value;
 
     }
 

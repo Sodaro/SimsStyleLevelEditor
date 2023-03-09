@@ -44,3 +44,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf305024fa7d80d49b1584d861c262e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _wallPrefab: {fileID: 5154541071028982803, guid: 36877bf95344cc64f869dc077c54f8d1, type: 3}
+  _gridSize: 10
+  _targetTransform: {fileID: 0}
+  _snapToCenter: 0
+  _clickAction:
+    m_Name: Click
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 7dbcdbbd-bed3-4c29-ad87-023d68b28f01
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 124ba934-eebe-402e-8dfa-2c2455786678
+      m_Path: <Mouse>/leftButton
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Click
+      m_Flags: 0
+    m_Flags: 0
