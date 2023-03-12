@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlacementGrid : MonoBehaviour
 {
@@ -10,9 +9,9 @@ public class PlacementGrid : MonoBehaviour
     private (Vector3, Vector3)[] _gridVertices;
 
     [SerializeField] private Transform _targetTransform;
-    [SerializeField] private bool _snapToCenter = false;
+    [SerializeField] private bool _snapPreviewToCenter = false;
     [SerializeField] private bool _buildRooms = false;
-    [SerializeField] private InputAction _clickAction;
+
 
     private Vector3? _buildStartPoint = Vector3.zero;
     private Vector3? _buildEndPoint = Vector3.zero;
@@ -23,7 +22,6 @@ public class PlacementGrid : MonoBehaviour
 
     private void Awake()
     {
-        _clickAction.Enable();
         CreateLineMaterial();
         plane = new Plane(Vector3.up, 0);
         int sideLength = _gridSize + 1;
@@ -47,27 +45,53 @@ public class PlacementGrid : MonoBehaviour
         }
         _gridBounds = new Bounds(Vector3.zero, new Vector3(lineLength, lineLength, lineLength));
     }
-    bool TryGetMousePositionOnGrid(out Vector3? mousePosition)
+    bool TryConvertMouseToGrid(out Vector3? mousePosition)
     {
         mousePosition = null;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (!plane.Raycast(ray, out float distance)) { return false; }
 
         Vector3 worldPos = ray.GetPoint(distance);
-        Vector3 desiredPosition = _snapToCenter ? GridUtilities.GetTileCenterFromWorldXZ(worldPos) : GridUtilities.GetGridPosition(worldPos);
+        Vector3 desiredPosition = GridUtilities.GetGridPosition(worldPos);
+        if (!_gridBounds.Contains(desiredPosition)) { return false; }
+
+        mousePosition = desiredPosition;
+        return true;
+    }
+    bool TryConvertMouseToGridCenter(out Vector3? mousePosition)
+    {
+        mousePosition = null;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (!plane.Raycast(ray, out float distance)) { return false; }
+
+        Vector3 worldPos = ray.GetPoint(distance);
+        Vector3 desiredPosition = GridUtilities.GetTileCenterFromWorldXZ(worldPos);
         if (!_gridBounds.Contains(desiredPosition)) { return false; }
 
         mousePosition = desiredPosition;
         return true;
     }
 
-    private void HandleMousePressed()
+    public void HandleMouseClick(Player.MouseClickType clickType)
     {
-        TryGetMousePositionOnGrid(out _buildStartPoint);
+        if (clickType == Player.MouseClickType.Pressed)
+        {
+            StartBuild();
+        }
+        else if (clickType == Player.MouseClickType.Released)
+        {
+            FinishBuild();
+        }
     }
-    private void HandleMouseReleased()
+
+    private void StartBuild()
     {
-        if (!TryGetMousePositionOnGrid(out _buildEndPoint)) { return; }
+        TryConvertMouseToGrid(out _buildStartPoint);
+    }
+
+    private void FinishBuild()
+    {
+        if (!TryConvertMouseToGrid(out _buildEndPoint)) { return; }
 
         if (_buildEndPoint != null && _buildStartPoint != null)
         {
@@ -92,7 +116,7 @@ public class PlacementGrid : MonoBehaviour
             {
                 PlaceWall(_buildStartPoint.Value, _buildEndPoint.Value);
             }
-            
+
             _buildEndPoint = null;
             _buildStartPoint = null;
         }
@@ -142,25 +166,34 @@ public class PlacementGrid : MonoBehaviour
         GL.PopMatrix();
     }
 
-    private void Update()
+    public void SnapObjectToGrid(GameObject objectToSnap)
     {
         Vector3? mouseGridPosition = null;
-        if (!TryGetMousePositionOnGrid(out mouseGridPosition))
+        if (!TryConvertMouseToGridCenter(out mouseGridPosition))
         {
             return;
         }
+        objectToSnap.transform.position = mouseGridPosition.Value;
+    }
 
-        if (_clickAction.WasPressedThisFrame())
+    private void Update()
+    {
+        Vector3? mouseGridPosition = null;
+        if (_snapPreviewToCenter)
         {
-            HandleMousePressed();
+            if (!TryConvertMouseToGridCenter(out mouseGridPosition))
+            {
+                return;
+            }
         }
-        else if (_clickAction.WasReleasedThisFrame())
+        else
         {
-            HandleMouseReleased();
+            if (!TryConvertMouseToGrid(out mouseGridPosition))
+            {
+                return;
+            }
         }
-
         _targetTransform.position = mouseGridPosition.Value;
-
     }
 
     private void OnDrawGizmos()
