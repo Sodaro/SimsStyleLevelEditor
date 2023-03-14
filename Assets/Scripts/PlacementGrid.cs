@@ -2,15 +2,17 @@ using UnityEngine;
 
 public class PlacementGrid : MonoBehaviour
 {
-    [SerializeField] private GameObject _wallPrefab;
+    public enum PlacementRules { GridCenter, GridLines };
+
+    [SerializeField] private GameObject _objectPrefab;
     [SerializeField] int _gridSize = 100;
+    [SerializeField] private Transform _targetTransform;
+    [SerializeField] private bool _buildRooms = false;
+    [SerializeField] private bool _deleteOverlappingObjects = false;
+    [SerializeField] private PlacementRules _currentPlacementRules;
     Material lineMaterial;
 
     private (Vector3, Vector3)[] _gridVertices;
-
-    [SerializeField] private Transform _targetTransform;
-    [SerializeField] private bool _snapPreviewToCenter = false;
-    [SerializeField] private bool _buildRooms = false;
 
 
     private Vector3? _buildStartPoint = Vector3.zero;
@@ -19,7 +21,6 @@ public class PlacementGrid : MonoBehaviour
     Plane plane;
 
     private Bounds _gridBounds;
-
     private void Awake()
     {
         CreateLineMaterial();
@@ -45,7 +46,7 @@ public class PlacementGrid : MonoBehaviour
         }
         _gridBounds = new Bounds(Vector3.zero, new Vector3(lineLength, lineLength, lineLength));
     }
-    bool TryConvertMouseToGrid(out Vector3? mousePosition)
+    private bool TryConvertMouseToGrid(out Vector3? mousePosition)
     {
         mousePosition = null;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -58,7 +59,7 @@ public class PlacementGrid : MonoBehaviour
         mousePosition = desiredPosition;
         return true;
     }
-    bool TryConvertMouseToGridCenter(out Vector3? mousePosition)
+    private bool TryConvertMouseToGridCenter(out Vector3? mousePosition)
     {
         mousePosition = null;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -71,7 +72,10 @@ public class PlacementGrid : MonoBehaviour
         mousePosition = desiredPosition;
         return true;
     }
-
+    public void SetObjectPrefab(GameObject obj)
+    {
+        _objectPrefab = obj;
+    }
     public void HandleMouseClick(Player.MouseClickType clickType)
     {
         if (clickType == Player.MouseClickType.Pressed)
@@ -86,19 +90,54 @@ public class PlacementGrid : MonoBehaviour
 
     private void StartBuild()
     {
-        TryConvertMouseToGrid(out _buildStartPoint);
+        switch (_currentPlacementRules)
+        {
+            case PlacementRules.GridCenter:
+                TryConvertMouseToGridCenter(out _buildStartPoint);
+                break;
+            case PlacementRules.GridLines:
+                TryConvertMouseToGrid(out _buildStartPoint);
+                break;
+        }
+    }
+    public void DestroyObjectsInBox(Vector3 start, Vector3 end)
+    {
+        var minZ = Mathf.Min(start.z, end.z);
+        var maxZ = Mathf.Max(start.z, end.z);
+        var minX = Mathf.Min(start.x, end.x);
+        var maxX = Mathf.Max(start.x, end.x);
+        var colliders = Physics.OverlapBox((start + end) / 2, new Vector3((maxX - minX) / 2, 10, (maxZ - minZ) / 2), Quaternion.identity, 1);
+        foreach (var collider in colliders)
+        {
+            Destroy(collider.transform.parent.gameObject);
+        }
     }
 
     private void FinishBuild()
     {
-        if (!TryConvertMouseToGrid(out _buildEndPoint)) { return; }
+        switch (_currentPlacementRules)
+        {
+            case PlacementRules.GridCenter:
+                TryConvertMouseToGridCenter(out _buildEndPoint);
+                break;
+            case PlacementRules.GridLines:
+                TryConvertMouseToGrid(out _buildEndPoint);
+                break;
+        }
 
         if (_buildEndPoint != null && _buildStartPoint != null)
         {
+            var start = _buildStartPoint.Value;
+            var end = _buildEndPoint.Value;
             if (_buildRooms)
             {
-                var start = _buildStartPoint.Value;
-                var end = _buildEndPoint.Value;
+                if (start.z == end.z || start.x == end.x)
+                {
+                    _buildEndPoint = null;
+                    _buildStartPoint = null;
+                    return;
+                }
+
                 var minZ = Mathf.Min(start.z, end.z);
                 var maxZ = Mathf.Max(start.z, end.z);
                 var minX = Mathf.Min(start.x, end.x);
@@ -107,6 +146,10 @@ public class PlacementGrid : MonoBehaviour
                 var tr = new Vector3(maxX, start.y, maxZ);
                 var bl = new Vector3(minX, start.y, minZ);
                 var br = new Vector3(maxX, start.y, minZ);
+                if (_deleteOverlappingObjects)
+                {
+                    DestroyObjectsInBox(start, end);
+                }
                 PlaceWall(tl, tr);
                 PlaceWall(tr, br);
                 PlaceWall(br, bl);
@@ -114,7 +157,7 @@ public class PlacementGrid : MonoBehaviour
             }
             else
             {
-                PlaceWall(_buildStartPoint.Value, _buildEndPoint.Value);
+                PlaceWall(start, end);
             }
 
             _buildEndPoint = null;
@@ -125,11 +168,11 @@ public class PlacementGrid : MonoBehaviour
     void PlaceWall(Vector3 startPoint, Vector3 endPoint)
     {
         var diff = endPoint - startPoint;
-        var count = diff.magnitude / GridUtilities.TileSize;
+        var count = Mathf.Max(diff.magnitude / GridUtilities.TileSize, 1);
         for (int i = 0; i < count; i++)
         {
             var rot = Quaternion.LookRotation(diff.normalized, Vector3.up);
-            var instance = Instantiate(_wallPrefab, startPoint + diff.normalized * i * GridUtilities.TileSize, rot, transform.parent);
+            var instance = Instantiate(_objectPrefab, startPoint + diff.normalized * i * GridUtilities.TileSize, rot, transform.parent);
         }
     }
 
@@ -154,7 +197,7 @@ public class PlacementGrid : MonoBehaviour
         GL.PushMatrix();
         GL.MultMatrix(transform.localToWorldMatrix); // not needed if already in worldspace
         GL.Begin(GL.LINES);
-        GL.Color(Color.red);
+        GL.Color(Color.cyan);
         for (int i = 0; i < _gridVertices.Length; i++)
         {
             var pair = _gridVertices[i];
@@ -168,32 +211,29 @@ public class PlacementGrid : MonoBehaviour
 
     public void SnapObjectToGrid(GameObject objectToSnap)
     {
-        Vector3? mouseGridPosition = null;
-        if (!TryConvertMouseToGridCenter(out mouseGridPosition))
+        Vector3? mouseGridPosition;
+        switch (_currentPlacementRules)
         {
-            return;
+            case PlacementRules.GridCenter:
+                if (!TryConvertMouseToGridCenter(out mouseGridPosition))
+                {
+                    return;
+                }
+                objectToSnap.transform.position = mouseGridPosition.Value;
+                break;
+            case PlacementRules.GridLines:
+                if (!TryConvertMouseToGrid(out mouseGridPosition))
+                {
+                    return;
+                }
+                objectToSnap.transform.position = mouseGridPosition.Value;
+                break;
         }
-        objectToSnap.transform.position = mouseGridPosition.Value;
     }
 
     private void Update()
     {
-        Vector3? mouseGridPosition = null;
-        if (_snapPreviewToCenter)
-        {
-            if (!TryConvertMouseToGridCenter(out mouseGridPosition))
-            {
-                return;
-            }
-        }
-        else
-        {
-            if (!TryConvertMouseToGrid(out mouseGridPosition))
-            {
-                return;
-            }
-        }
-        _targetTransform.position = mouseGridPosition.Value;
+        SnapObjectToGrid(_targetTransform.gameObject);
     }
 
     private void OnDrawGizmos()

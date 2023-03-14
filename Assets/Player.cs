@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
+
     enum InteractionType { Build, Selection, Interaction, Demolish };
     public enum MouseClickType { Pressed, Released, Held, None };
 
@@ -11,6 +12,7 @@ public class Player : MonoBehaviour
     [SerializeField] private InputAction _selectAction;
     [SerializeField] private InputAction _interactionAction;
     [SerializeField] private InputAction _demolishAction;
+    [SerializeField] private InputAction _deleteAction;
 
     [SerializeField] private PlacementGrid _placementGrid;
     [SerializeField] private InteractionType _activeInteractionType;
@@ -26,13 +28,9 @@ public class Player : MonoBehaviour
         _selectAction.Enable();
         _interactionAction.Enable();
         _demolishAction.Enable();
+        _deleteAction.Enable();
 
         _camera = Camera.main;
-    }
-
-    private void GetInput()
-    {
-
     }
 
     private void Update()
@@ -73,13 +71,30 @@ public class Player : MonoBehaviour
                 _placementGrid.HandleMouseClick(clickType);
                 break;
             case InteractionType.Selection:
-                if (clickType == MouseClickType.Released)
+                if (_selectedObject == null)
                 {
-                    AttemptSelect();
+                    if (clickType == MouseClickType.Pressed)
+                    {
+                        AttemptSelect();
+                    }
+                }
+                else
+                {
+                    if (_deleteAction.WasPressedThisFrame())
+                    {
+                        AttemptDemolish();
+                    }
+                    else
+                    {
+                        AttemptMoveObject();
+                        if (clickType == MouseClickType.Released)
+                        {
+                            _selectedObject = null;
+                        }
+                    }
                 }
                 break;
             case InteractionType.Interaction:
-                AttemptMoveObject();
                 break;
             case InteractionType.Demolish:
                 if (clickType == MouseClickType.Released)
@@ -99,34 +114,34 @@ public class Player : MonoBehaviour
             _clickIsHeld = false;
         }
     }
-    GameObject GetObjectAtMouse()
+    private GameObject GetObjectAtMouse()
     {
         Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit hit, 1000f, 1))
         {
-            return hit.transform.gameObject;
+            return hit.transform.parent.gameObject;
         }
         return null;
     }
 
-    void AttemptSelect()
+    private void AttemptSelect()
     {
         _selectedObject = GetObjectAtMouse();
     }
 
-    void AttemptMoveObject()
+    private void AttemptMoveObject()
     {
         if (_selectedObject == null)
             return;
 
         _placementGrid.SnapObjectToGrid(_selectedObject);
     }
-    void AttemptDemolish()
+    private void AttemptDemolish()
     {
         var obj = GetObjectAtMouse();
         if (obj != null)
         {
-            Destroy(obj);
+            Destroy(obj.transform.parent.gameObject);
         }
     }
 }
