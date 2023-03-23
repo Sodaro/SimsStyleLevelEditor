@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 318a9aecae3fb8e49816f2c92f5e81b2, type: 3}
+  m_Name: asdasfasd
+  m_EditorClassIdentifier: 
+  m_SceneAsset: {fileID: 102900000, guid: e379cff6b7eaaa245a85351e7858c368, type: 3}
+  m_Guids:
+  - 0000000000000000f000000000000000
+  - 36877bf95344cc64f869dc077c54f8d1
+  - 2b6f0b821deb11f42bb7fb41203b4c29
+  - f20eda8023eb6764fa59cb670380d20a
+  - 8f586378b4e144a9851e7b34d9b748ee
+  - 0000000000000000e000000000000000
+  - 2dcc1423c1cf38c44bccc1f1ba53009e
+  m_Assets:
+  - m_FileIds: 9b2a000000000000a52a000000000000992a0000000000003f280000000000004028000000000000
+    m_Assets:
+    - {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+    - {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
+    - {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+    - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+    - {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  - m_FileIds: 1314d84ecb9b8847
+    m_Assets:
+    - {fileID: 5154541071028982803, guid: 36877bf95344cc64f869dc077c54f8d1, type: 3}
+  - m_FileIds: b4b9865d27349777
+    m_Assets:
+    - {fileID: 8617413755674212788, guid: 2b6f0b821deb11f42bb7fb41203b4c29, type: 3}
+  - m_FileIds: b5eb4b20a985fd7d
+    m_Assets:
+    - {fileID: 9078559385286601653, guid: f20eda8023eb6764fa59cb670380d20a, type: 3}
+  - m_FileIds: 40f3ad0000000000a844210000000000
+    m_Assets:
+    - {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  - m_FileIds: df27000000000000e127000000000000
+    m_Assets:
+    - {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+    - {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+  - m_FileIds: 200b200000000000
+    m_Assets:
+    - {fileID: 2100000, guid: 2dcc1423c1cf38c44bccc1f1ba53009e, type: 2}
+  m_PrefabGuids:
+  - 85ee59e009b906c49b3bed04a4fa0165
+  - 87ad061ac6ed07a489ce5ee39e307fab
+  m_Prefabs:
+  - {fileID: 5850599446432129349, guid: 85ee59e009b906c49b3bed04a4fa0165, type: 3}
+  - {fileID: 8337638599686421047, guid: 87ad061ac6ed07a489ce5ee39e307fab, type: 3}
