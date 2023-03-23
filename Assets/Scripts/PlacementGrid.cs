@@ -19,6 +19,7 @@ public class PlacementGrid : MonoBehaviour
     private Vector3? _buildEndPoint = Vector3.zero;
 
     Plane plane;
+    int _currentHeight = 0;
 
     private Bounds _gridBounds;
     private void Awake()
@@ -66,7 +67,7 @@ public class PlacementGrid : MonoBehaviour
         if (!plane.Raycast(ray, out float distance)) { return false; }
 
         Vector3 worldPos = ray.GetPoint(distance);
-        Vector3 desiredPosition = GridUtilities.GetTileCenterFromWorldXZ(worldPos);
+        Vector3 desiredPosition = GridUtilities.GetTileCenterFromWorld(worldPos);
         if (!_gridBounds.Contains(desiredPosition)) { return false; }
 
         mousePosition = desiredPosition;
@@ -100,6 +101,18 @@ public class PlacementGrid : MonoBehaviour
                 break;
         }
     }
+
+    public void IncreasePlaneHeight()
+    {
+        _currentHeight++;
+        plane.SetNormalAndPosition(Vector3.up, Vector3.up * _currentHeight);
+    }
+    public void DecreasePlaneHeight()
+    {
+        _currentHeight--;
+        plane.SetNormalAndPosition(Vector3.up, Vector3.up * _currentHeight);
+    }
+
     public void DestroyObjectsInBox(Vector3 start, Vector3 end)
     {
         var minZ = Mathf.Min(start.z, end.z);

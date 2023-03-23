@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
     [SerializeField] private InputAction _interactionAction;
     [SerializeField] private InputAction _demolishAction;
     [SerializeField] private InputAction _deleteAction;
+    [SerializeField] private InputAction _heightIncreaseAction;
+    [SerializeField] private InputAction _heightDecreaseAction;
 
     [SerializeField] private PlacementGrid _placementGrid;
     [SerializeField] private InteractionType _activeInteractionType;
@@ -29,6 +31,8 @@ public class Player : MonoBehaviour
         _interactionAction.Enable();
         _demolishAction.Enable();
         _deleteAction.Enable();
+        _heightIncreaseAction.Enable();
+        _heightDecreaseAction.Enable();
 
         _camera = Camera.main;
     }
@@ -55,6 +59,17 @@ public class Player : MonoBehaviour
         var selectInput = _selectAction.WasPressedThisFrame();
         var interactInput = _interactionAction.WasPressedThisFrame();
         var demolishInput = _demolishAction.WasPressedThisFrame();
+        var heightIncreaseInput = _heightIncreaseAction.WasPressedThisFrame();
+        var heightDecreaseInput = _heightDecreaseAction.WasPressedThisFrame();
+
+        if (heightIncreaseInput)
+        {
+            _placementGrid.IncreasePlaneHeight();
+        }
+        else if (heightDecreaseInput)
+        {
+            _placementGrid.DecreasePlaneHeight();
+        }
 
         if (buildInput)
             _activeInteractionType = InteractionType.Build;
