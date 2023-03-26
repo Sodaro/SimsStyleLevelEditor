@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class PlacementGrid : MonoBehaviour
 {
+    public delegate void OnObjectPlaced(GameObject prefab, GameObject instance);
+    public event OnObjectPlaced onObjectPlaced;
+
     public enum PlacementRules { GridCenter, GridLines };
 
     [SerializeField] private GameObject _objectPrefab;
@@ -10,6 +13,7 @@ public class PlacementGrid : MonoBehaviour
     [SerializeField] private bool _buildRooms = false;
     [SerializeField] private bool _deleteOverlappingObjects = false;
     [SerializeField] private PlacementRules _currentPlacementRules;
+    [SerializeField] private GameSerializer _gameSerializer;
     Material lineMaterial;
 
     private (Vector3, Vector3)[] _gridVertices;
@@ -17,6 +21,7 @@ public class PlacementGrid : MonoBehaviour
 
     private Vector3? _buildStartPoint = Vector3.zero;
     private Vector3? _buildEndPoint = Vector3.zero;
+
 
     Plane plane;
     int _currentHeight = 0;
@@ -73,9 +78,18 @@ public class PlacementGrid : MonoBehaviour
         mousePosition = desiredPosition;
         return true;
     }
-    public void SetObjectPrefab(GameObject obj)
+
+    public void Test()
     {
-        _objectPrefab = obj;
+        foreach (var data in _gameSerializer.DataBase)
+        {
+            print(Resources.InstanceIDToObject(data.Value.PrefabID).name);
+        }
+    }
+
+    public void SetObjectPrefab(int prefabID)
+    {
+        _objectPrefab = Resources.InstanceIDToObject(prefabID) as GameObject;
     }
     public void HandleMouseClick(Player.MouseClickType clickType)
     {
@@ -184,8 +198,11 @@ public class PlacementGrid : MonoBehaviour
         var count = Mathf.Max(diff.magnitude / GridUtilities.TileSize, 1);
         for (int i = 0; i < count; i++)
         {
+
+            //TODO: Fix this so we don't fire 100 events, either package data or use other way of storing/sending data
             var rot = Quaternion.LookRotation(diff.normalized, Vector3.up);
             var instance = Instantiate(_objectPrefab, startPoint + diff.normalized * i * GridUtilities.TileSize, rot, transform.parent);
+            onObjectPlaced.Invoke(_objectPrefab, instance);
         }
     }
 

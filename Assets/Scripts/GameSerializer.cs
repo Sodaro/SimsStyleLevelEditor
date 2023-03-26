@@ -1,52 +1,58 @@
-using System.Collections;
+using Newtonsoft.Json;
 using System.Collections.Generic;
-using Unity.RuntimeSceneSerialization;
+using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.IO;
-using UnityEditor;
-
-[System.Serializable]
-public struct GameData
-{
-    public string ResourcePath;
-    public int InstanceID;
-}
 
 public class GameSerializer : MonoBehaviour
 {
+    public Dictionary<int, ResourceData> DataBase;
+    [SerializeField] private PlacementGrid _placementGrid;
+    private Dictionary<int, GameInstanceData> _sceneData;
+
+    private void Awake()
+    {
+        DataBase = JsonConvert.DeserializeObject<Dictionary<int, ResourceData>>(System.IO.File.ReadAllText(ProjectGlobals.DataPath));
+        _sceneData = new Dictionary<int, GameInstanceData>();
+        _placementGrid.onObjectPlaced += _placementGrid_onObjectPlaced;
+    }
+
+    private void _placementGrid_onObjectPlaced(GameObject prefab, GameObject instance)
+    {
+        _sceneData.Add(instance.GetInstanceID(), new GameInstanceData
+        {
+            ResourceData = DataBase[prefab.GetInstanceID()],
+            InstancePosition = new(instance.transform.position),
+            InstanceRotation = new(instance.transform.rotation),
+            InstanceScale = new(instance.transform.localScale)
+        });
+    }
+
     private void Start()
     {
         AsyncOperation op = SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive);
         op.completed += (AsyncOperation result) =>
         {
             SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(1));
-            Object[] objs = Resources.LoadAll("GamePrefabs");
-            GameData data = new GameData();
-            foreach (Object obj in objs)
-            {
-                //print(obj.GetInstanceID());
-                //data.PrefabID = obj.GetInstanceID();
-                //print(JsonUtility.ToJson(obj, true));
-
-            }
-
-            Object instance = Instantiate(objs[0]);
-            print($"i:{instance.GetInstanceID()}, o:{objs[0].GetInstanceID()}");
-            //instance = Instantiate(objs[0]) as GameObject;
-            //print($"instance:{instance.GetInstanceID()}, obj[0]:{objs[0].GetInstanceID()}");
-            //instance = Instantiate(objwall) as GameObject;
-            //instance = Instantiate(objwall) as GameObject;
-            //instance = Instantiate(objwall) as GameObject;
         };
     }
-    public void SerializeScene()
+    public void SerializeSceneData()
     {
-
+        var jsonstr = JsonConvert.SerializeObject(_sceneData);
+        File.WriteAllText(ProjectGlobals.ResourcePath + "myscene.json", jsonstr);
     }
-    public void DeserializeScene()
+    public void DeserializeSceneData()
     {
-
-
+        var data = JsonConvert.DeserializeObject<Dictionary<int, GameInstanceData>>(File.ReadAllText(ProjectGlobals.ResourcePath + "myscene.json"));
+        _sceneData.Clear();
+        foreach (var instanceData in data.Values)
+        {
+            Vector3 pos = instanceData.InstancePosition.ToVector3();
+            Vector3 scale = instanceData.InstanceScale.ToVector3();
+            Quaternion rot = instanceData.InstanceRotation.ToQuaternion();
+            var instance = Instantiate(Resources.InstanceIDToObject(instanceData.ResourceData.PrefabID), pos, rot) as GameObject;
+            instance.transform.localScale = scale;
+            _sceneData.Add(instance.GetInstanceID(), instanceData);
+        }
     }
 }

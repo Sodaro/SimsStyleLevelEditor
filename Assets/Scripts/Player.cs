@@ -3,7 +3,6 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
-
     enum InteractionType { Build, Selection, Interaction, Demolish };
     public enum MouseClickType { Pressed, Released, Held, None };
 
