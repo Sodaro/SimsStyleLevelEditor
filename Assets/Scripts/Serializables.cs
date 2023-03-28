@@ -1,13 +1,12 @@
 using Newtonsoft.Json;
 using UnityEngine;
-[System.Serializable]
-public struct ResourceData
-{
-    [JsonProperty("path")]
-    public string ResourcePath;
-    [JsonProperty("id")]
-    public int PrefabID;
-}
+//[System.Serializable]
+////public struct ResourceData
+////{
+
+////    [JsonProperty("id")]
+////    public int PrefabID;
+////}
 
 [System.Serializable]
 public struct GameInstanceData
@@ -18,8 +17,10 @@ public struct GameInstanceData
     public SerializableVector3 InstancePosition;
     [JsonProperty("scale")]
     public SerializableVector3 InstanceScale;
-    [JsonProperty("data")]
-    public ResourceData ResourceData;
+    [JsonProperty("key")]
+    public string AddressableKey;
+    //[JsonProperty("data")]
+    //public ResourceData ResourceData;
 }
 
 [System.Serializable]

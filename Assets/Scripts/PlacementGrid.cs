@@ -1,13 +1,15 @@
+using System.Linq;
 using UnityEngine;
 
 public class PlacementGrid : MonoBehaviour
 {
     public delegate void OnObjectPlaced(GameObject prefab, GameObject instance);
+    public delegate void OnObjectDeleted(GameObject instance);
     public event OnObjectPlaced onObjectPlaced;
+    public event OnObjectDeleted onObjectDeleted;
 
     public enum PlacementRules { GridCenter, GridLines };
 
-    [SerializeField] private GameObject _objectPrefab;
     [SerializeField] int _gridSize = 100;
     [SerializeField] private Transform _targetTransform;
     [SerializeField] private bool _buildRooms = false;
@@ -17,6 +19,7 @@ public class PlacementGrid : MonoBehaviour
     Material lineMaterial;
 
     private (Vector3, Vector3)[] _gridVertices;
+    private (string, GameObject) _selectedAddressable;
 
 
     private Vector3? _buildStartPoint = Vector3.zero;
@@ -51,7 +54,15 @@ public class PlacementGrid : MonoBehaviour
             _gridVertices[index] = (new Vector3(initialOffset + lineOffset, 0, initialOffset), new Vector3(initialOffset + lineOffset, 0, initialOffset + lineLength));
         }
         _gridBounds = new Bounds(Vector3.zero, new Vector3(lineLength, lineLength, lineLength));
+        _gameSerializer.onPlaceablesLoaded += _gameSerializer_onPlaceablesLoaded;
     }
+
+    private void _gameSerializer_onPlaceablesLoaded(System.Collections.Generic.Dictionary<string, GameObject> pairs)
+    {
+        var pair = pairs.ElementAt(0);
+        _selectedAddressable = (pair.Key, pair.Value);
+    }
+
     private bool TryConvertMouseToGrid(out Vector3? mousePosition)
     {
         mousePosition = null;
@@ -79,17 +90,9 @@ public class PlacementGrid : MonoBehaviour
         return true;
     }
 
-    public void Test()
+    public void SetObjectPrefab((string, GameObject) addressable)
     {
-        foreach (var data in _gameSerializer.DataBase)
-        {
-            print(Resources.InstanceIDToObject(data.Value.PrefabID).name);
-        }
-    }
-
-    public void SetObjectPrefab(int prefabID)
-    {
-        _objectPrefab = Resources.InstanceIDToObject(prefabID) as GameObject;
+        _selectedAddressable = addressable;
     }
     public void HandleMouseClick(Player.MouseClickType clickType)
     {
@@ -136,7 +139,9 @@ public class PlacementGrid : MonoBehaviour
         var colliders = Physics.OverlapBox((start + end) / 2, new Vector3((maxX - minX) / 2, 10, (maxZ - minZ) / 2), Quaternion.identity, 1);
         foreach (var collider in colliders)
         {
-            Destroy(collider.transform.parent.gameObject);
+            var objToDestroy = collider.transform.parent.gameObject;
+            onObjectDeleted.Invoke(objToDestroy);
+            Destroy(objToDestroy);
         }
     }
 
@@ -201,8 +206,8 @@ public class PlacementGrid : MonoBehaviour
 
             //TODO: Fix this so we don't fire 100 events, either package data or use other way of storing/sending data
             var rot = Quaternion.LookRotation(diff.normalized, Vector3.up);
-            var instance = Instantiate(_objectPrefab, startPoint + diff.normalized * i * GridUtilities.TileSize, rot, transform.parent);
-            onObjectPlaced.Invoke(_objectPrefab, instance);
+            var instance = Instantiate(_selectedAddressable.Item2, startPoint + diff.normalized * i * GridUtilities.TileSize, rot, transform.parent);
+            onObjectPlaced.Invoke(_selectedAddressable.Item2, instance);
         }
     }
 

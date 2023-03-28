@@ -1,0 +1,184 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1667579855366641617
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6769502115256861776}
+  - component: {fileID: 6462288423220022911}
+  m_Layer: 0
+  m_Name: Player
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6769502115256861776
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1667579855366641617}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6462288423220022911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1667579855366641617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f5694a65d4331040b0c52dc98fe867a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _clickAction:
+    m_Name: Click
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 8a0633df-0288-4bef-a58f-0bd33dc9f45f
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 834ee3bf-b9a1-45fd-a3ae-e8aecb7206c5
+      m_Path: <Mouse>/leftButton
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Click
+      m_Flags: 0
+    m_Flags: 0
+  _buildAction:
+    m_Name: Build
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: ea6cc1bb-1477-40e5-ba97-e004abc44843
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 82aadd26-c422-40e3-ae5e-3ef8e177657e
+      m_Path: <Keyboard>/1
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Build
+      m_Flags: 0
+    m_Flags: 0
+  _selectAction:
+    m_Name: Select
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 70c93bfb-1e9e-4854-a554-851143c257af
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 537a8b13-a01c-4f94-8265-58bf8b40554c
+      m_Path: <Keyboard>/2
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Select
+      m_Flags: 0
+    m_Flags: 0
+  _interactionAction:
+    m_Name: Interaction
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 7edae803-1b1b-41b0-bd6f-df137e281b00
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 1d896b9e-52cc-436f-aba7-eff1f09bf311
+      m_Path: <Keyboard>/3
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Interaction
+      m_Flags: 0
+    m_Flags: 0
+  _demolishAction:
+    m_Name: Demolish
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 39812fb1-36c9-4d4e-858b-2b62e2af4a74
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: db5b99e0-0253-42ae-a9d6-c20234cd4ac3
+      m_Path: <Keyboard>/4
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Demolish
+      m_Flags: 0
+    m_Flags: 0
+  _deleteAction:
+    m_Name: Delete
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 1c08dc47-3002-443c-bd83-ae6395c31d03
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 17800ce3-aded-430d-9798-04058cb06573
+      m_Path: <Keyboard>/delete
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Delete
+      m_Flags: 0
+    m_Flags: 0
+  _heightIncreaseAction:
+    m_Name: Height Increase
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 838ebc4b-8c76-45aa-8640-7dc5f91da047
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 50adebbb-8564-4e10-83ce-908eb7d80e69
+      m_Path: <Keyboard>/q
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Height Increase
+      m_Flags: 0
+    m_Flags: 0
+  _heightDecreaseAction:
+    m_Name: Height Decrease
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: b2a23cc5-4dfd-46e3-9802-08df72b41556
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 17d44e91-7936-46e0-8b52-188ff3b3e0f6
+      m_Path: <Keyboard>/e
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Height Decrease
+      m_Flags: 0
+    m_Flags: 0
+  _placementGrid: {fileID: 0}
+  _activeInteractionType: 0
