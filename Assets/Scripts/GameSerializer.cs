@@ -31,7 +31,7 @@ public class GameSerializer : MonoBehaviour
     string path;
     private IEnumerator PreloadPlaceables()
     {
-        //find all the locations with label "SpaceHazards"
+        //find all the locations with label "placeable"
         var loadResourceLocationsHandle
             = Addressables.LoadResourceLocationsAsync("placeable", typeof(GameObject));
 
@@ -49,7 +49,6 @@ public class GameSerializer : MonoBehaviour
                 obj => { PlaceableObjects.Add(location.PrimaryKey, obj.Result); };
             opList.Add(loadAssetHandle);
         }
-
         //create a GroupOperation to wait on all the above loads at once. 
         var groupOp = Addressables.ResourceManager.CreateGenericGroupOperation(opList);
 
@@ -58,11 +57,6 @@ public class GameSerializer : MonoBehaviour
 
         Addressables.Release(loadResourceLocationsHandle);
 
-        //take a gander at our results.
-        foreach (var item in PlaceableObjects)
-        {
-            Debug.Log(item.Key + " - " + item.Value.name);
-        }
         onPlaceablesLoaded.Invoke(PlaceableObjects);
 
     }
@@ -89,7 +83,6 @@ public class GameSerializer : MonoBehaviour
         {
             return;
         }
-        print($"removing obj:{id}");
         _sceneData.Remove(id);
     }
 
