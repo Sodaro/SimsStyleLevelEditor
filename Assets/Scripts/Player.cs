@@ -14,6 +14,8 @@ public class Player : MonoBehaviour
     [SerializeField] private InputAction _deleteAction;
     [SerializeField] private InputAction _heightIncreaseAction;
     [SerializeField] private InputAction _heightDecreaseAction;
+    [SerializeField] private InputAction _mouseXDeltaAction;
+    [SerializeField] private InputAction _mouseYDeltaAction;
 
     [SerializeField] private PlacementGrid _placementGrid;
     [SerializeField] private InteractionType _activeInteractionType;

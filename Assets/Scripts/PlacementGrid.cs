@@ -157,44 +157,45 @@ public class PlacementGrid : MonoBehaviour
                 break;
         }
 
-        if (_buildEndPoint != null && _buildStartPoint != null)
+        if (_buildEndPoint == null || _buildStartPoint == null)
         {
-            var start = _buildStartPoint.Value;
-            var end = _buildEndPoint.Value;
-            if (_buildRooms)
-            {
-                if (start.z == end.z || start.x == end.x)
-                {
-                    _buildEndPoint = null;
-                    _buildStartPoint = null;
-                    return;
-                }
-
-                var minZ = Mathf.Min(start.z, end.z);
-                var maxZ = Mathf.Max(start.z, end.z);
-                var minX = Mathf.Min(start.x, end.x);
-                var maxX = Mathf.Max(start.x, end.x);
-                var tl = new Vector3(minX, start.y, maxZ);
-                var tr = new Vector3(maxX, start.y, maxZ);
-                var bl = new Vector3(minX, start.y, minZ);
-                var br = new Vector3(maxX, start.y, minZ);
-                if (_deleteOverlappingObjects)
-                {
-                    DestroyObjectsInBox(start, end);
-                }
-                PlaceWall(tl, tr);
-                PlaceWall(tr, br);
-                PlaceWall(br, bl);
-                PlaceWall(bl, tl);
-            }
-            else
-            {
-                PlaceWall(start, end);
-            }
-
-            _buildEndPoint = null;
-            _buildStartPoint = null;
+            return;
         }
+        var start = _buildStartPoint.Value;
+        var end = _buildEndPoint.Value;
+        if (_buildRooms)
+        {
+            if (start.z == end.z || start.x == end.x)
+            {
+                _buildEndPoint = null;
+                _buildStartPoint = null;
+                return;
+            }
+
+            var minZ = Mathf.Min(start.z, end.z);
+            var maxZ = Mathf.Max(start.z, end.z);
+            var minX = Mathf.Min(start.x, end.x);
+            var maxX = Mathf.Max(start.x, end.x);
+            var tl = new Vector3(minX, start.y, maxZ);
+            var tr = new Vector3(maxX, start.y, maxZ);
+            var bl = new Vector3(minX, start.y, minZ);
+            var br = new Vector3(maxX, start.y, minZ);
+            if (_deleteOverlappingObjects)
+            {
+                DestroyObjectsInBox(start, end);
+            }
+            PlaceWall(tl, tr);
+            PlaceWall(tr, br);
+            PlaceWall(br, bl);
+            PlaceWall(bl, tl);
+        }
+        else
+        {
+            PlaceWall(start, end);
+        }
+
+        _buildEndPoint = null;
+        _buildStartPoint = null;
     }
 
     void PlaceWall(Vector3 startPoint, Vector3 endPoint)
