@@ -40,6 +40,11 @@ MonoBehaviour:
     m_SerializedLabels:
     - icon
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2dcc1423c1cf38c44bccc1f1ba53009e
+    m_Address: Assets/Materials/Preview.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 140eacad2defa81438883c1671fbcf39, type: 2}
   m_SchemaSet:

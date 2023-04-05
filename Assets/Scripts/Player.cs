@@ -14,8 +14,6 @@ public class Player : MonoBehaviour
     [SerializeField] private InputAction _deleteAction;
     [SerializeField] private InputAction _heightIncreaseAction;
     [SerializeField] private InputAction _heightDecreaseAction;
-    [SerializeField] private InputAction _mouseXDeltaAction;
-    [SerializeField] private InputAction _mouseYDeltaAction;
 
     [SerializeField] private PlacementGrid _placementGrid;
     [SerializeField] private InteractionType _activeInteractionType;
@@ -23,6 +21,8 @@ public class Player : MonoBehaviour
     private Camera _camera = null;
     private bool _clickIsHeld = false;
     private GameObject _selectedObject = null;
+
+    private MouseClickType _clickState = MouseClickType.None;
 
     private void Awake()
     {
@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
         _camera = Camera.main;
     }
 
-    private void Update()
+    private void UpdateMouseState()
     {
         bool pressed = _clickAction.WasPressedThisFrame();
         bool released = _clickAction.WasReleasedThisFrame();
@@ -55,11 +55,37 @@ public class Player : MonoBehaviour
         {
             clickType = MouseClickType.Held;
         }
+        _clickState = clickType;
 
+        //update hold logic at end of frame
+        if (pressed)
+        {
+            _clickIsHeld = true;
+        }
+        else if (released)
+        {
+            _clickIsHeld = false;
+        }
+    }
+
+    private void UpdateInteractionMode()
+    {
         var buildInput = _buildAction.WasPressedThisFrame();
         var selectInput = _selectAction.WasPressedThisFrame();
         var interactInput = _interactionAction.WasPressedThisFrame();
         var demolishInput = _demolishAction.WasPressedThisFrame();
+        if (buildInput)
+            _activeInteractionType = InteractionType.Build;
+        else if (selectInput)
+            _activeInteractionType = InteractionType.Selection;
+        else if (interactInput)
+            _activeInteractionType = InteractionType.Interaction;
+        else if (demolishInput)
+            _activeInteractionType = InteractionType.Demolish;
+    }
+
+    private void UpdateHeight()
+    {
         var heightIncreaseInput = _heightIncreaseAction.WasPressedThisFrame();
         var heightDecreaseInput = _heightDecreaseAction.WasPressedThisFrame();
 
@@ -71,63 +97,71 @@ public class Player : MonoBehaviour
         {
             _placementGrid.DecreasePlaneHeight();
         }
+    }
 
-        if (buildInput)
-            _activeInteractionType = InteractionType.Build;
-        else if (selectInput)
-            _activeInteractionType = InteractionType.Selection;
-        else if (interactInput)
-            _activeInteractionType = InteractionType.Interaction;
-        else if (demolishInput)
-            _activeInteractionType = InteractionType.Demolish;
+    private void HandleSelectMode()
+    {
+        if (_selectedObject == null)
+        {
+            if (_clickState == MouseClickType.Pressed)
+            {
+                AttemptSelect();
+            }
+        }
+        else
+        {
+            if (_deleteAction.WasPressedThisFrame())
+            {
+                AttemptDemolish();
+            }
+            else
+            {
+                AttemptMoveObject();
+                if (_clickState == MouseClickType.Released)
+                {
+                    _selectedObject = null;
+                }
+            }
+        }
+    }
+
+    private void HandleBuildMode()
+    {
+        _placementGrid.HandleMouseClick(_clickState);
+    }
+
+    private void HandleInteractMode()
+    {
+
+    }
+    private void HandleDemolishMode()
+    {
+        if (_clickState == MouseClickType.Released)
+        {
+            AttemptDemolish();
+        }
+    }
+
+    private void Update()
+    {
+        UpdateMouseState();
+        UpdateInteractionMode();
+        UpdateHeight();
 
         switch (_activeInteractionType)
         {
             case InteractionType.Build:
-                _placementGrid.HandleMouseClick(clickType);
+                HandleBuildMode();
                 break;
             case InteractionType.Selection:
-                if (_selectedObject == null)
-                {
-                    if (clickType == MouseClickType.Pressed)
-                    {
-                        AttemptSelect();
-                    }
-                }
-                else
-                {
-                    if (_deleteAction.WasPressedThisFrame())
-                    {
-                        AttemptDemolish();
-                    }
-                    else
-                    {
-                        AttemptMoveObject();
-                        if (clickType == MouseClickType.Released)
-                        {
-                            _selectedObject = null;
-                        }
-                    }
-                }
+                HandleSelectMode();
                 break;
             case InteractionType.Interaction:
+                HandleInteractMode();
                 break;
             case InteractionType.Demolish:
-                if (clickType == MouseClickType.Released)
-                {
-                    AttemptDemolish();
-                }
+                HandleDemolishMode();
                 break;
-        }
-
-        //update hold logic at end of frame
-        if (pressed)
-        {
-            _clickIsHeld = true;
-        }
-        else if (released)
-        {
-            _clickIsHeld = false;
         }
     }
     private GameObject GetObjectAtMouse()
