@@ -169,7 +169,7 @@ public class Player : MonoBehaviour
         Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit hit, 1000f, 1))
         {
-            return hit.transform.parent.gameObject;
+            return hit.transform.gameObject;
         }
         return null;
     }
@@ -191,7 +191,7 @@ public class Player : MonoBehaviour
         var obj = GetObjectAtMouse();
         if (obj != null)
         {
-            Destroy(obj.transform.parent.gameObject);
+            Destroy(obj.transform.gameObject);
         }
     }
 }

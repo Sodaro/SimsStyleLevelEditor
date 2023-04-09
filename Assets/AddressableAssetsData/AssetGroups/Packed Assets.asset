@@ -22,28 +22,70 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 1012c0c362e10ed48ac47ecec644a140
-    m_Address: Wall
+  - m_GUID: 11f697f1aa9adfc40a79a7956d9e3daa
+    m_Address: road_crossing Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - icon
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: b36980f396ad07d40a71b85e9e23f832
-    m_Address: Globe
+  - m_GUID: 88d250fa01427ec49acf3cdc2d56cdf4
+    m_Address: road_bridge Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - icon
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 3bd840f7c194cb449ba54525b44bd50b
-    m_Address: Table
+  - m_GUID: cead18006a2d9c64fa6309bba02e962c
+    m_Address: road_crossroad Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - icon
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2dcc1423c1cf38c44bccc1f1ba53009e
-    m_Address: Assets/Materials/Preview.mat
+    m_Address: Preview
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2334eb4938aaf9047b0b57cbfd3a7ad2
+    m_Address: road_straight
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - icon
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 642a9fa51cca2684da40f0a0f53b443d
+    m_Address: road_bend Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - icon
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6602cdb4ccaa1184a8d9b319cd97575f
+    m_Address: road_straight
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5dddbf2c3f9fe8545bf6ea0eafddd9d3
+    m_Address: road_crossroad Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 93092c00cb68e034487636fadb5c4cdd
+    m_Address: road_crossing Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a62435ffe94e82749810313afe545406
+    m_Address: road_bend Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8670568455fab464e9a5495d33a8faf6
+    m_Address: road_bridge Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 140eacad2defa81438883c1671fbcf39, type: 2}

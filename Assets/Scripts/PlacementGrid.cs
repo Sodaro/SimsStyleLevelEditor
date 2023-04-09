@@ -143,7 +143,7 @@ public class PlacementGrid : MonoBehaviour
         var colliders = Physics.OverlapBox((start + end) / 2, new Vector3((maxX - minX) / 2, 10, (maxZ - minZ) / 2), Quaternion.identity, 1);
         foreach (var collider in colliders)
         {
-            var objToDestroy = collider.transform.parent.gameObject;
+            var objToDestroy = collider.transform.gameObject;
             onObjectDeleted.Invoke(objToDestroy);
             Destroy(objToDestroy);
         }
