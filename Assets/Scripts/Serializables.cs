@@ -11,14 +11,14 @@ using UnityEngine;
 [System.Serializable]
 public struct GameInstanceData
 {
-    [JsonProperty("rot")]
-    public SerializableQuaternion InstanceRotation;
-    [JsonProperty("pos")]
-    public SerializableVector3 InstancePosition;
-    [JsonProperty("scale")]
-    public SerializableVector3 InstanceScale;
     [JsonProperty("key")]
     public string AddressableKey;
+    [JsonProperty("pos")]
+    public SerializableVector3 InstancePosition;
+    [JsonProperty("rot")]
+    public SerializableQuaternion InstanceRotation;
+    [JsonProperty("scale")]
+    public SerializableVector3 InstanceScale;
     //[JsonProperty("data")]
     //public ResourceData ResourceData;
 }

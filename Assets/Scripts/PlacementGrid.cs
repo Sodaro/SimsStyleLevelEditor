@@ -1,5 +1,6 @@
 using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlacementGrid : MonoBehaviour
 {
@@ -11,12 +12,13 @@ public class PlacementGrid : MonoBehaviour
     public enum PlacementRules { GridCenter, GridLines };
 
     [SerializeField] int _gridSize = 100;
-    [SerializeField] private Transform _targetTransform;
+
     [SerializeField] private bool _buildRooms = false;
     [SerializeField] private bool _deleteOverlappingObjects = false;
     [SerializeField] private PlacementRules _currentPlacementRules;
     [SerializeField] private GameSerializer _gameSerializer;
     Material lineMaterial;
+    [SerializeField] private GameObject _buildPreview;
 
     private (Vector3, Vector3)[] _gridVertices;
     private (string, GameObject) _selectedAddressable;
@@ -25,6 +27,8 @@ public class PlacementGrid : MonoBehaviour
     private Vector3? _buildStartPoint = Vector3.zero;
     private Vector3? _buildEndPoint = Vector3.zero;
 
+
+    private Vector3 _mouseGridPosition = Vector3.zero;
 
     Plane plane;
     int _currentHeight = 0;
@@ -79,7 +83,7 @@ public class PlacementGrid : MonoBehaviour
     private bool TryConvertMouseToGridCenter(out Vector3? mousePosition)
     {
         mousePosition = null;
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
         if (!plane.Raycast(ray, out float distance)) { return false; }
 
         Vector3 worldPos = ray.GetPoint(distance);
@@ -139,7 +143,7 @@ public class PlacementGrid : MonoBehaviour
         var colliders = Physics.OverlapBox((start + end) / 2, new Vector3((maxX - minX) / 2, 10, (maxZ - minZ) / 2), Quaternion.identity, 1);
         foreach (var collider in colliders)
         {
-            var objToDestroy = collider.transform.parent.gameObject;
+            var objToDestroy = collider.transform.gameObject;
             onObjectDeleted.Invoke(objToDestroy);
             Destroy(objToDestroy);
         }
@@ -157,44 +161,46 @@ public class PlacementGrid : MonoBehaviour
                 break;
         }
 
-        if (_buildEndPoint != null && _buildStartPoint != null)
+        if (_buildEndPoint == null || _buildStartPoint == null)
         {
-            var start = _buildStartPoint.Value;
-            var end = _buildEndPoint.Value;
-            if (_buildRooms)
-            {
-                if (start.z == end.z || start.x == end.x)
-                {
-                    _buildEndPoint = null;
-                    _buildStartPoint = null;
-                    return;
-                }
-
-                var minZ = Mathf.Min(start.z, end.z);
-                var maxZ = Mathf.Max(start.z, end.z);
-                var minX = Mathf.Min(start.x, end.x);
-                var maxX = Mathf.Max(start.x, end.x);
-                var tl = new Vector3(minX, start.y, maxZ);
-                var tr = new Vector3(maxX, start.y, maxZ);
-                var bl = new Vector3(minX, start.y, minZ);
-                var br = new Vector3(maxX, start.y, minZ);
-                if (_deleteOverlappingObjects)
-                {
-                    DestroyObjectsInBox(start, end);
-                }
-                PlaceWall(tl, tr);
-                PlaceWall(tr, br);
-                PlaceWall(br, bl);
-                PlaceWall(bl, tl);
-            }
-            else
-            {
-                PlaceWall(start, end);
-            }
-
-            _buildEndPoint = null;
-            _buildStartPoint = null;
+            return;
         }
+        var start = _buildStartPoint.Value;
+        var end = _buildEndPoint.Value;
+        if (_buildRooms)
+        {
+            if (start.z == end.z || start.x == end.x)
+            {
+                _buildEndPoint = null;
+                _buildStartPoint = null;
+                return;
+            }
+
+            var minZ = Mathf.Min(start.z, end.z);
+            var maxZ = Mathf.Max(start.z, end.z);
+            var minX = Mathf.Min(start.x, end.x);
+            var maxX = Mathf.Max(start.x, end.x);
+            var tl = new Vector3(minX, start.y, maxZ);
+            var tr = new Vector3(maxX, start.y, maxZ);
+            var bl = new Vector3(minX, start.y, minZ);
+            var br = new Vector3(maxX, start.y, minZ);
+            if (_deleteOverlappingObjects)
+            {
+                DestroyObjectsInBox(start, end);
+            }
+            PlaceWall(tl, tr);
+            PlaceWall(tr, br);
+            PlaceWall(br, bl);
+            PlaceWall(bl, tl);
+        }
+        else
+        {
+            PlaceWall(start, end);
+        }
+
+        _buildEndPoint = null;
+        _buildStartPoint = null;
+        _buildPreview.SetActive(false);
     }
 
     void PlaceWall(Vector3 startPoint, Vector3 endPoint)
@@ -244,31 +250,59 @@ public class PlacementGrid : MonoBehaviour
         GL.PopMatrix();
     }
 
-    public void SnapObjectToGrid(GameObject objectToSnap)
+    public Vector3? GetMouseGridPosition()
     {
-        Vector3? mouseGridPosition;
+        Vector3? mouseGridPosition = Vector3.zero;
         switch (_currentPlacementRules)
         {
             case PlacementRules.GridCenter:
-                if (!TryConvertMouseToGridCenter(out mouseGridPosition))
-                {
-                    return;
-                }
-                objectToSnap.transform.position = mouseGridPosition.Value;
+                TryConvertMouseToGridCenter(out mouseGridPosition);
                 break;
             case PlacementRules.GridLines:
-                if (!TryConvertMouseToGrid(out mouseGridPosition))
-                {
-                    return;
-                }
-                objectToSnap.transform.position = mouseGridPosition.Value;
+                TryConvertMouseToGrid(out mouseGridPosition);
                 break;
+        }
+        return mouseGridPosition;
+    }
+
+    public void SnapObjectToGrid(GameObject targetObject)
+    {
+        targetObject.transform.position = _mouseGridPosition;
+    }
+
+    private void UpdateBuildPreview()
+    {
+        if (_buildStartPoint == null)
+            return;
+
+        _buildPreview.SetActive(true);
+
+        var diff = _mouseGridPosition - _buildStartPoint.Value;
+        _buildPreview.transform.position = (_buildStartPoint.Value + _mouseGridPosition) / 2;
+        if (_buildRooms)
+        {
+            var x = Mathf.Abs(diff.x);
+            var y = Mathf.Max(1, Mathf.Abs(diff.y));
+            var z = Mathf.Abs(diff.z);
+            _buildPreview.transform.localScale = new Vector3(x, y, z);
+        }
+        else
+        {
+            var rot = Quaternion.LookRotation(diff.normalized, Vector3.up);
+            _buildPreview.transform.localScale = new Vector3(1, 1, diff.magnitude / 10);
+            _buildPreview.transform.rotation = rot;
         }
     }
 
     private void Update()
     {
-        SnapObjectToGrid(_targetTransform.gameObject);
+        var pos = GetMouseGridPosition();
+        if (pos == null)
+            return;
+
+        _mouseGridPosition = pos.Value;
+        UpdateBuildPreview();
+        //SnapObjectToGrid(_targetTransform.gameObject);
     }
 
     private void OnDrawGizmos()

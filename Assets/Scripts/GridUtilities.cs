@@ -14,7 +14,7 @@ public static class GridUtilities
     public static Vector3 GetTileCenterFromWorld(Vector3 worldPosition)
     {
         worldPosition.x = (int)(worldPosition.x / TileSize) * TileSize + TileHalfSize;
-        worldPosition.y = (int)(worldPosition.y / TileSize) * TileSize + TileHalfSize;
+        worldPosition.y = (int)(worldPosition.y / TileSize) * TileSize;
         worldPosition.z = (int)(worldPosition.z / TileSize) * TileSize + TileHalfSize;
         return worldPosition;
     }

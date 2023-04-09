@@ -39,7 +39,6 @@ public class ButtonGenerator : MonoBehaviour
             loadAssetHandle.Completed +=
                 obj =>
                 {
-                    print(location.PrimaryKey);
                     _icons.Add(location.PrimaryKey, obj.Result);
                 };
             opList.Add(loadAssetHandle);

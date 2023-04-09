@@ -1,7 +1,9 @@
 using Newtonsoft.Json;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -136,16 +138,16 @@ public class GameSerializer : MonoBehaviour
     {
         JsonSerializerSettings settings = new JsonSerializerSettings();
         settings.Formatting = Formatting.Indented;
-        var jsonstr = JsonConvert.SerializeObject(data, settings);
+        var jsonstr = JsonConvert.SerializeObject(data.Values, settings);
         File.WriteAllText(path, jsonstr);
     }
 
     public Dictionary<int, GameInstanceData> DeserializeSceneData(string path)
     {
         //Create a new dict as instance id is not the same when instantiating objects
-        var deserializedData = JsonConvert.DeserializeObject<Dictionary<int, GameInstanceData>>(File.ReadAllText(path));
+        var deserializedData = JsonConvert.DeserializeObject<List<GameInstanceData>>(File.ReadAllText(path));
         var newData = new Dictionary<int, GameInstanceData>();
-        foreach (var instanceData in deserializedData.Values)
+        foreach (var instanceData in deserializedData)
         {
             Vector3 pos = instanceData.InstancePosition.ToVector3();
             Vector3 scale = instanceData.InstanceScale.ToVector3();
