@@ -11,7 +11,17 @@ public class PlaceableAddressableGenerator : MonoBehaviour
     static void ExtractPreviewImages()
     {
         string extractionPath = EditorUtility.OpenFolderPanel("Select Folder to extract from", Application.dataPath, "");
+        if (string.IsNullOrEmpty(extractionPath))
+        {
+            return;
+        }
+
         string targetPath = EditorUtility.OpenFolderPanel("Select Folder to extract to", Application.dataPath, "");
+        if (string.IsNullOrEmpty(targetPath))
+        {
+            return;
+        }
+
         var assetPath = "Assets" + extractionPath.Replace(Application.dataPath, "");
         string[] guids = AssetDatabase.FindAssets("", new[] { assetPath });
         foreach (string str in guids)
@@ -30,14 +40,18 @@ public class PlaceableAddressableGenerator : MonoBehaviour
             importer.textureType = TextureImporterType.Sprite;
             AssetDatabase.WriteImportSettingsIfDirty(assetpath);
         }
-        AddAssetsToAddressables(targetPath, "icon");
         AssetDatabase.Refresh();
     }
-    [MenuItem("PlaceableAddressableGenerator/Add placeables to addressable group")]
+    [MenuItem("PlaceableAddressableGenerator/Make files in folder addressable")]
     static void AddPlaceablesToAddressableGroup()
     {
-        string targetPath = EditorUtility.OpenFolderPanel("Select Folder to extract to", Application.dataPath, "");
-        AddAssetsToAddressables(targetPath, "placeable");
+        string targetPath = EditorUtility.OpenFolderPanel("Select Folder with files to make addressable", Application.dataPath, "");
+        if (string.IsNullOrEmpty(targetPath))
+        {
+            return;
+        }
+        var label = EditorInputDialog.Show("Label", "Enter Addressable Label", "");
+        AddAssetsToAddressables(targetPath, label);
     }
     static void AddAssetsToAddressables(string assetPath, string label)
     {
@@ -45,7 +59,7 @@ public class PlaceableAddressableGenerator : MonoBehaviour
         string[] guids = AssetDatabase.FindAssets("", new[] { assetPath });
         foreach (var guid in guids)
         {
-            var asset = AddAssetToAddressables(guid);
+            AddAssetToAddressables(guid);
             SetLabelForAddressables(guid, label);
         }
     }
