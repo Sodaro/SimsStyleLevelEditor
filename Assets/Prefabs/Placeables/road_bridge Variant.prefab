@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &5269693031797790455
+--- !u!1001 &4895944420431443692
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,11 +10,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: b649df07c0d80584f8555cb3046fc179, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b649df07c0d80584f8555cb3046fc179, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b649df07c0d80584f8555cb3046fc179, type: 3}
       propertyPath: m_LocalPosition.y
@@ -22,7 +22,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b649df07c0d80584f8555cb3046fc179, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.74999994
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b649df07c0d80584f8555cb3046fc179, type: 3}
       propertyPath: m_LocalRotation.w
@@ -62,20 +62,20 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b649df07c0d80584f8555cb3046fc179, type: 3}
       insertIndex: -1
-      addedObject: {fileID: -1763611330176345193}
+      addedObject: {fileID: 2169885546475514886}
   m_SourcePrefab: {fileID: 100100000, guid: b649df07c0d80584f8555cb3046fc179, type: 3}
---- !u!1 &5035266506135808934 stripped
+--- !u!1 &5706212818438720445 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b649df07c0d80584f8555cb3046fc179, type: 3}
-  m_PrefabInstance: {fileID: 5269693031797790455}
+  m_PrefabInstance: {fileID: 4895944420431443692}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &-1763611330176345193
+--- !u!65 &2169885546475514886
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5035266506135808934}
+  m_GameObject: {fileID: 5706212818438720445}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
