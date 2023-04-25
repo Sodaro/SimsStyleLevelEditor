@@ -24,8 +24,8 @@ public class PlacementGrid : MonoBehaviour
     private (string, GameObject) _selectedAddressable;
 
 
-    private Vector3? _buildStartPoint = Vector3.zero;
-    private Vector3? _buildEndPoint = Vector3.zero;
+    private Vector3? _buildStartPoint = null;
+    private Vector3? _buildEndPoint = null;
 
 
     private Vector3 _mouseGridPosition = Vector3.zero;

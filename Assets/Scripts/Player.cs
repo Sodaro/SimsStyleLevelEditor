@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
@@ -6,6 +7,7 @@ public class Player : MonoBehaviour
     enum InteractionType { Build, Selection, Interaction, Demolish };
     public enum MouseClickType { Pressed, Released, Held, None };
 
+    [SerializeField] private EventSystem _eventSystem;
     [SerializeField] private InputAction _clickAction;
     [SerializeField] private InputAction _buildAction;
     [SerializeField] private InputAction _selectAction;
@@ -43,7 +45,7 @@ public class Player : MonoBehaviour
         bool pressed = _clickAction.WasPressedThisFrame();
         bool released = _clickAction.WasReleasedThisFrame();
         MouseClickType clickType = MouseClickType.None;
-        if (pressed)
+        if (pressed && !_eventSystem.IsPointerOverGameObject())
         {
             clickType = MouseClickType.Pressed;
         }
@@ -144,9 +146,9 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        UpdateHeight();
         UpdateMouseState();
         UpdateInteractionMode();
-        UpdateHeight();
 
         switch (_activeInteractionType)
         {

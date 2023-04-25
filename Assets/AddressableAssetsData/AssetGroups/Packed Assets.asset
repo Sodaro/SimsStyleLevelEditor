@@ -27,32 +27,32 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: a62435ffe94e82749810313afe545406
-    m_Address: road_bend Variant
+  - m_GUID: df4b618dad4800e448eb27badc52ebc2
+    m_Address: top-large Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 072c69979ffb4784a80cdd028895cdac
-    m_Address: road_straight Variant
+  - m_GUID: f418273523d46ad4190da49eedb4a05d
+    m_Address: top Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 5dddbf2c3f9fe8545bf6ea0eafddd9d3
-    m_Address: road_crossroad Variant
+  - m_GUID: 1a6c4b583efddfb4e80024c0650e374d
+    m_Address: structure-yellow-tall Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 93092c00cb68e034487636fadb5c4cdd
-    m_Address: road_crossing Variant
+  - m_GUID: 26a369623f79e2740b87c38925f13b60
+    m_Address: structure-yellow-short Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 8670568455fab464e9a5495d33a8faf6
-    m_Address: road_bridge Variant
+  - m_GUID: d8a6c0cbabbabf243916523214221250
+    m_Address: structure-yellow-medium Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
@@ -423,296 +423,8 @@ MonoBehaviour:
     m_SerializedLabels:
     - icon
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 2861ff5d6004e0b4b9a35a0f357eec42
-    m_Address: arrow Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - placeable
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 1b53e1d699ee2b34b96425e85860e80f
-    m_Address: box-large Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - placeable
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: d8c6cf495b60f9a4d971dd2b32be4d35
-    m_Address: box-long Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - placeable
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 3fafd96575ed1cc4fb80e6553fb3107f
-    m_Address: box-small Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - placeable
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 67372466f1d2a01498cd253dafb8b8b2
-    m_Address: box-wide Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - placeable
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: da0478c88dca7c84b93424d154dde5e8
-    m_Address: conveyor Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - placeable
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: b1dcb45d0ecac904ca33c062fd0fa222
-    m_Address: conveyor-bars Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - placeable
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 40d9dcf0bc7be3642a08da86509cf66f
-    m_Address: conveyor-bars-fence Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - placeable
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 2b44fb12f4686a446b6bad674777353b
-    m_Address: conveyor-bars-high Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - placeable
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 4acd346172a511744a70586e005729ae
-    m_Address: conveyor-bars-sides Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - placeable
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 9196c7bb6f02a314a8fdd2a8758b9897
-    m_Address: conveyor-bars-stripe Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - placeable
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 93dd13aca38fe9d42b774d3587bc8330
-    m_Address: conveyor-bars-stripe-fence Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - placeable
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: a036b2a86414df84789ed956b274fdc8
-    m_Address: conveyor-bars-stripe-high Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - placeable
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 99f74a9d7ac4e8d40bfd6ed8d417b510
-    m_Address: conveyor-bars-stripe-side Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - placeable
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 6352cc2ace73be140b3cecdc4ec2d09f
-    m_Address: conveyor-long Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - placeable
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 780fcb95fa9794141af1fe6e22695f59
-    m_Address: conveyor-long-sides Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - placeable
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: e1ccaae2ebdc3eb429f2e2f7c5cfd3c7
-    m_Address: conveyor-long-stripe Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - placeable
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 599553ddbdcc8284e9c5eb53d4e87a33
-    m_Address: conveyor-long-stripe-sides Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - placeable
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: c552352931da1d04caa6907e79180d4e
-    m_Address: conveyor-sides Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - placeable
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: df16cab0589886d4c8471e3bf2ae1c83
-    m_Address: conveyor-stripe Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - placeable
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 2973125bbb31a1346952cd13f6d8ac28
-    m_Address: conveyor-stripe-sides Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - placeable
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 6d080a1c6252de44fa7fc7d30b4850ff
-    m_Address: cover Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - placeable
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 57260ce1048e07d4dba69e5b2330afbc
-    m_Address: cover-bar Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - placeable
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: b27cad04dd82eb442aa96b231ff9eef6
-    m_Address: cover-corner Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - placeable
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 60e608793122c4d45b7f5fac67a8aaaa
-    m_Address: cover-hopper Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - placeable
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 5076e692547d0b34c83f340ee9a40c8b
-    m_Address: cover-stripe Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - placeable
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 08f7a357ffd23f04f81ba61c48b2b2e9
-    m_Address: cover-stripe-bar Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - placeable
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 4442d2dd759eb0b46931b413de565210
-    m_Address: cover-stripe-corner Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - placeable
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 9f22971c7b27c28479b0938a5f39d7a1
-    m_Address: cover-stripe-hopper Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - placeable
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: f2ce2835e1266994f901e4a3e675d07e
-    m_Address: cover-stripe-top Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - placeable
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 084351ac3aea9b745b1ba5176063f2f4
-    m_Address: cover-stripe-window Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - placeable
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: ddd2faa6c16c8c645a581a2c936ebbbb
-    m_Address: cover-top Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - placeable
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 9d8423559841f0743a02afb2f3c73bd3
-    m_Address: cover-window Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - placeable
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: a3492dc171897764c940b892ab81dabf
-    m_Address: door Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - placeable
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 011791a4ffbce8549a1d04cb8df33bce
-    m_Address: door-wide-closed Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - placeable
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 147b229cc3dec51439451a8f86e5837b
-    m_Address: door-wide-half Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - placeable
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: ecb2d444c39535c428da835e8d3e9ead
-    m_Address: door-wide-open Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - placeable
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 121de3f187ec53141a76106384254660
-    m_Address: floor Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - placeable
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 3a6e13a1a84923340a46c4d6618a824b
-    m_Address: floor-large Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - placeable
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 79ebf19bffd0a8c439324a4070ccaa25
-    m_Address: structure-corner-inner Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - placeable
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 6f9392146f8097541af838a2a48bae30
-    m_Address: structure-corner-outer Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - placeable
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 98dd319d16c53b248abcd5e6bce8d945
-    m_Address: structure-doorway Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - placeable
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 913bf444b412f1c429b3084cef7bf6a7
-    m_Address: structure-doorway-wide Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - placeable
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 46432d6ee131cad459e44ccf5d73458f
-    m_Address: structure-high Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - placeable
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: e1c79f0efbfdbdb4685d2907f7b53ba8
-    m_Address: structure-medium Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - placeable
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: d3988f1a65cdd7648ac4185897ad32b9
-    m_Address: structure-short Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - placeable
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 2c559fb42f3428e40b70b10aa3ca67d6
-    m_Address: structure-tall Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - placeable
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 29fc8ae54607cb947ae4934b36daf964
-    m_Address: structure-wall Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - placeable
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 007277307d6cf834b98da129d253fd6e
-    m_Address: structure-window Variant
+  - m_GUID: 5b692baa11791e14080c7d01e047385f
+    m_Address: structure-yellow-high Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
@@ -723,41 +435,335 @@ MonoBehaviour:
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 5b692baa11791e14080c7d01e047385f
-    m_Address: structure-yellow-high Variant
+  - m_GUID: 007277307d6cf834b98da129d253fd6e
+    m_Address: structure-window Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: d8a6c0cbabbabf243916523214221250
-    m_Address: structure-yellow-medium Variant
+  - m_GUID: 29fc8ae54607cb947ae4934b36daf964
+    m_Address: structure-wall Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 26a369623f79e2740b87c38925f13b60
-    m_Address: structure-yellow-short Variant
+  - m_GUID: 2c559fb42f3428e40b70b10aa3ca67d6
+    m_Address: structure-tall Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 1a6c4b583efddfb4e80024c0650e374d
-    m_Address: structure-yellow-tall Variant
+  - m_GUID: d3988f1a65cdd7648ac4185897ad32b9
+    m_Address: structure-short Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: f418273523d46ad4190da49eedb4a05d
-    m_Address: top Variant
+  - m_GUID: e1c79f0efbfdbdb4685d2907f7b53ba8
+    m_Address: structure-medium Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: df4b618dad4800e448eb27badc52ebc2
-    m_Address: top-large Variant
+  - m_GUID: 46432d6ee131cad459e44ccf5d73458f
+    m_Address: structure-high Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 913bf444b412f1c429b3084cef7bf6a7
+    m_Address: structure-doorway-wide Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 98dd319d16c53b248abcd5e6bce8d945
+    m_Address: structure-doorway Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6f9392146f8097541af838a2a48bae30
+    m_Address: structure-corner-outer Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 79ebf19bffd0a8c439324a4070ccaa25
+    m_Address: structure-corner-inner Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 072c69979ffb4784a80cdd028895cdac
+    m_Address: road_straight Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5dddbf2c3f9fe8545bf6ea0eafddd9d3
+    m_Address: road_crossroad Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 93092c00cb68e034487636fadb5c4cdd
+    m_Address: road_crossing Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8670568455fab464e9a5495d33a8faf6
+    m_Address: road_bridge Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a62435ffe94e82749810313afe545406
+    m_Address: road_bend Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3a6e13a1a84923340a46c4d6618a824b
+    m_Address: floor-large Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 121de3f187ec53141a76106384254660
+    m_Address: floor Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ecb2d444c39535c428da835e8d3e9ead
+    m_Address: door-wide-open Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 147b229cc3dec51439451a8f86e5837b
+    m_Address: door-wide-half Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 011791a4ffbce8549a1d04cb8df33bce
+    m_Address: door-wide-closed Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a3492dc171897764c940b892ab81dabf
+    m_Address: door Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9d8423559841f0743a02afb2f3c73bd3
+    m_Address: cover-window Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ddd2faa6c16c8c645a581a2c936ebbbb
+    m_Address: cover-top Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 084351ac3aea9b745b1ba5176063f2f4
+    m_Address: cover-stripe-window Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f2ce2835e1266994f901e4a3e675d07e
+    m_Address: cover-stripe-top Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9f22971c7b27c28479b0938a5f39d7a1
+    m_Address: cover-stripe-hopper Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4442d2dd759eb0b46931b413de565210
+    m_Address: cover-stripe-corner Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 08f7a357ffd23f04f81ba61c48b2b2e9
+    m_Address: cover-stripe-bar Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5076e692547d0b34c83f340ee9a40c8b
+    m_Address: cover-stripe Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 60e608793122c4d45b7f5fac67a8aaaa
+    m_Address: cover-hopper Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b27cad04dd82eb442aa96b231ff9eef6
+    m_Address: cover-corner Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 57260ce1048e07d4dba69e5b2330afbc
+    m_Address: cover-bar Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6d080a1c6252de44fa7fc7d30b4850ff
+    m_Address: cover Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2973125bbb31a1346952cd13f6d8ac28
+    m_Address: conveyor-stripe-sides Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: df16cab0589886d4c8471e3bf2ae1c83
+    m_Address: conveyor-stripe Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c552352931da1d04caa6907e79180d4e
+    m_Address: conveyor-sides Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 599553ddbdcc8284e9c5eb53d4e87a33
+    m_Address: conveyor-long-stripe-sides Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e1ccaae2ebdc3eb429f2e2f7c5cfd3c7
+    m_Address: conveyor-long-stripe Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 780fcb95fa9794141af1fe6e22695f59
+    m_Address: conveyor-long-sides Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6352cc2ace73be140b3cecdc4ec2d09f
+    m_Address: conveyor-long Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 99f74a9d7ac4e8d40bfd6ed8d417b510
+    m_Address: conveyor-bars-stripe-side Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a036b2a86414df84789ed956b274fdc8
+    m_Address: conveyor-bars-stripe-high Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 93dd13aca38fe9d42b774d3587bc8330
+    m_Address: conveyor-bars-stripe-fence Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9196c7bb6f02a314a8fdd2a8758b9897
+    m_Address: conveyor-bars-stripe Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4acd346172a511744a70586e005729ae
+    m_Address: conveyor-bars-sides Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2b44fb12f4686a446b6bad674777353b
+    m_Address: conveyor-bars-high Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 40d9dcf0bc7be3642a08da86509cf66f
+    m_Address: conveyor-bars-fence Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b1dcb45d0ecac904ca33c062fd0fa222
+    m_Address: conveyor-bars Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: da0478c88dca7c84b93424d154dde5e8
+    m_Address: conveyor Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 67372466f1d2a01498cd253dafb8b8b2
+    m_Address: box-wide Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3fafd96575ed1cc4fb80e6553fb3107f
+    m_Address: box-small Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d8c6cf495b60f9a4d971dd2b32be4d35
+    m_Address: box-long Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1b53e1d699ee2b34b96425e85860e80f
+    m_Address: box-large Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2861ff5d6004e0b4b9a35a0f357eec42
+    m_Address: arrow Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f08da9eb78ac9ac44bb1ad97b89f733f
+    m_Address: f08da9eb78ac9ac44bb1ad97b89f733f
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - 
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 140eacad2defa81438883c1671fbcf39, type: 2}
