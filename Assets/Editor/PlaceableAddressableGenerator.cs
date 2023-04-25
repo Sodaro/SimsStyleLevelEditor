@@ -8,13 +8,6 @@ using UnityEngine.AddressableAssets;
 
 public class PlaceableAddressableGenerator : MonoBehaviour
 {
-    [MenuItem("PlaceableAddressableGenerator/toggle theme")]
-    static void Cool()
-    {
-        InternalEditorUtility.SwitchSkinAndRepaintAllViews();
-        SettingsService.NotifySettingsProviderChanged();
-        EditorApplication.RepaintProjectWindow();
-    }
     [MenuItem("PlaceableAddressableGenerator/Extract preview images from folder")]
     static void ExtractPreviewImages()
     {

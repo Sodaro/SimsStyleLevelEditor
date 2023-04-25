@@ -1,6 +1,16 @@
+using System;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
+
+public struct BuildOptions
+{
+    public enum PlacementRules { GridCenter, GridLines };
+    public bool RectanglePlacement;
+    public bool DeleteOverlappingObjects;
+    public PlacementRules ActivePlacementRules;
+}
+
 
 public class PlacementGrid : MonoBehaviour
 {
@@ -9,24 +19,20 @@ public class PlacementGrid : MonoBehaviour
     public event OnObjectPlaced onObjectPlaced;
     public event OnObjectDeleted onObjectDeleted;
 
-    public enum PlacementRules { GridCenter, GridLines };
-
+    [SerializeField] private Toolbar _toolbar;
     [SerializeField] int _gridSize = 100;
 
-    [SerializeField] private bool _buildRooms = false;
-    [SerializeField] private bool _deleteOverlappingObjects = false;
-    [SerializeField] private PlacementRules _currentPlacementRules;
     [SerializeField] private GameSerializer _gameSerializer;
-    Material lineMaterial;
+
+    [SerializeField] private Material _lineMaterial;
     [SerializeField] private GameObject _buildPreview;
 
     private (Vector3, Vector3)[] _gridVertices;
     private (string, GameObject) _selectedAddressable;
 
-
+    private BuildOptions _buildOptions;
     private Vector3? _buildStartPoint = null;
     private Vector3? _buildEndPoint = null;
-
 
     private Vector3 _mouseGridPosition = Vector3.zero;
 
@@ -34,10 +40,9 @@ public class PlacementGrid : MonoBehaviour
     int _currentHeight = 0;
 
     private Bounds _gridBounds;
-    private void Awake()
+
+    private void CreateGrid()
     {
-        CreateLineMaterial();
-        plane = new Plane(Vector3.up, 0);
         int sideLength = _gridSize + 1;
         _gridVertices = new (Vector3, Vector3)[sideLength * 2];
         int lineLength = _gridSize * GridUtilities.TileSize;
@@ -58,7 +63,34 @@ public class PlacementGrid : MonoBehaviour
             _gridVertices[index] = (new Vector3(initialOffset + lineOffset, 0, initialOffset), new Vector3(initialOffset + lineOffset, 0, initialOffset + lineLength));
         }
         _gridBounds = new Bounds(Vector3.zero, new Vector3(lineLength, lineLength, lineLength));
+    }
+    private void Awake()
+    {
+        plane = new Plane(Vector3.up, 0);
+        CreateGrid();
+
         _gameSerializer.onPlaceablesLoaded += _gameSerializer_onPlaceablesLoaded;
+        var options = Enum.GetNames(typeof(BuildOptions.PlacementRules)).ToList();
+        _toolbar.OptionsDropdown.AddOptions(options);
+    }
+
+    private void OnOptionsDropdownValueChanged(int value) => _buildOptions.ActivePlacementRules = (BuildOptions.PlacementRules)value;
+    private void OnRectanglePlacementToggleValueChanged(bool value) => _buildOptions.RectanglePlacement = value;
+    private void OnDeleteOverlappingToggleValueChanged(bool value) => _buildOptions.DeleteOverlappingObjects = value;
+
+    private void OnEnable()
+    {
+        _toolbar.OptionsDropdown.onValueChanged.AddListener(OnOptionsDropdownValueChanged);
+        _toolbar.PlaceRectangleToggle.onValueChanged.AddListener(OnRectanglePlacementToggleValueChanged);
+        _toolbar.DeleteOverlapToggle.onValueChanged.AddListener(OnDeleteOverlappingToggleValueChanged);
+    }
+
+
+    private void OnDisable()
+    {
+        _toolbar.OptionsDropdown.onValueChanged.RemoveListener(OnOptionsDropdownValueChanged);
+        _toolbar.PlaceRectangleToggle.onValueChanged.RemoveListener(OnRectanglePlacementToggleValueChanged);
+        _toolbar.DeleteOverlapToggle.onValueChanged.RemoveListener(OnDeleteOverlappingToggleValueChanged);
     }
 
     private void _gameSerializer_onPlaceablesLoaded(System.Collections.Generic.Dictionary<string, GameObject> pairs)
@@ -112,12 +144,12 @@ public class PlacementGrid : MonoBehaviour
 
     private void StartBuild()
     {
-        switch (_currentPlacementRules)
+        switch (_buildOptions.ActivePlacementRules)
         {
-            case PlacementRules.GridCenter:
+            case BuildOptions.PlacementRules.GridCenter:
                 TryConvertMouseToGridCenter(out _buildStartPoint);
                 break;
-            case PlacementRules.GridLines:
+            case BuildOptions.PlacementRules.GridLines:
                 TryConvertMouseToGrid(out _buildStartPoint);
                 break;
         }
@@ -136,6 +168,7 @@ public class PlacementGrid : MonoBehaviour
 
     public void DestroyObjectsInBox(Vector3 start, Vector3 end)
     {
+        //TODO: Replace Physics overlap with gridbased, or at least account for height
         var minZ = Mathf.Min(start.z, end.z);
         var maxZ = Mathf.Max(start.z, end.z);
         var minX = Mathf.Min(start.x, end.x);
@@ -151,12 +184,12 @@ public class PlacementGrid : MonoBehaviour
 
     private void FinishBuild()
     {
-        switch (_currentPlacementRules)
+        switch (_buildOptions.ActivePlacementRules)
         {
-            case PlacementRules.GridCenter:
+            case BuildOptions.PlacementRules.GridCenter:
                 TryConvertMouseToGridCenter(out _buildEndPoint);
                 break;
-            case PlacementRules.GridLines:
+            case BuildOptions.PlacementRules.GridLines:
                 TryConvertMouseToGrid(out _buildEndPoint);
                 break;
         }
@@ -167,7 +200,7 @@ public class PlacementGrid : MonoBehaviour
         }
         var start = _buildStartPoint.Value;
         var end = _buildEndPoint.Value;
-        if (_buildRooms)
+        if (_buildOptions.RectanglePlacement)
         {
             if (start.z == end.z || start.x == end.x)
             {
@@ -184,7 +217,7 @@ public class PlacementGrid : MonoBehaviour
             var tr = new Vector3(maxX, start.y, maxZ);
             var bl = new Vector3(minX, start.y, minZ);
             var br = new Vector3(maxX, start.y, minZ);
-            if (_deleteOverlappingObjects)
+            if (_buildOptions.DeleteOverlappingObjects)
             {
                 DestroyObjectsInBox(start, end);
             }
@@ -217,24 +250,11 @@ public class PlacementGrid : MonoBehaviour
         }
     }
 
-    void CreateLineMaterial()
-    {
-        // simple colored things.
-        var shader = Shader.Find("Hidden/Internal-Colored");
-        lineMaterial = new Material(shader);
-        lineMaterial.hideFlags = HideFlags.HideAndDontSave;
-        // Turn on alpha blending
-        lineMaterial.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
-        lineMaterial.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
-        // Turn backface culling off
-        lineMaterial.SetInt("_Cull", (int)UnityEngine.Rendering.CullMode.Off);
-        // Turn off depth writes
-        lineMaterial.SetInt("_ZWrite", 0);
-    }
+
 
     void OnRenderObject()
     {
-        lineMaterial.SetPass(0);
+        _lineMaterial.SetPass(0);
         GL.PushMatrix();
         GL.MultMatrix(transform.localToWorldMatrix); // not needed if already in worldspace
         GL.Begin(GL.LINES);
@@ -253,12 +273,12 @@ public class PlacementGrid : MonoBehaviour
     public Vector3? GetMouseGridPosition()
     {
         Vector3? mouseGridPosition = Vector3.zero;
-        switch (_currentPlacementRules)
+        switch (_buildOptions.ActivePlacementRules)
         {
-            case PlacementRules.GridCenter:
+            case BuildOptions.PlacementRules.GridCenter:
                 TryConvertMouseToGridCenter(out mouseGridPosition);
                 break;
-            case PlacementRules.GridLines:
+            case BuildOptions.PlacementRules.GridLines:
                 TryConvertMouseToGrid(out mouseGridPosition);
                 break;
         }
@@ -279,12 +299,13 @@ public class PlacementGrid : MonoBehaviour
 
         var diff = _mouseGridPosition - _buildStartPoint.Value;
         _buildPreview.transform.position = (_buildStartPoint.Value + _mouseGridPosition) / 2;
-        if (_buildRooms)
+        if (_buildOptions.RectanglePlacement)
         {
             var x = Mathf.Abs(diff.x);
             var y = Mathf.Max(1, Mathf.Abs(diff.y));
             var z = Mathf.Abs(diff.z);
             _buildPreview.transform.localScale = new Vector3(x, y, z);
+            _buildPreview.transform.rotation = Quaternion.identity;
         }
         else
         {
