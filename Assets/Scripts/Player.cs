@@ -1,24 +1,11 @@
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
-    enum InteractionType { Build, Selection, Interaction, Demolish };
-    public enum MouseClickType { Pressed, Released, Held, None };
-
-    [SerializeField] private EventSystem _eventSystem;
-    [SerializeField] private InputAction _clickAction;
-    [SerializeField] private InputAction _buildAction;
-    [SerializeField] private InputAction _selectAction;
-    [SerializeField] private InputAction _interactionAction;
-    [SerializeField] private InputAction _demolishAction;
-    [SerializeField] private InputAction _deleteAction;
-    [SerializeField] private InputAction _heightIncreaseAction;
-    [SerializeField] private InputAction _heightDecreaseAction;
-
     [SerializeField] private PlacementGrid _placementGrid;
     [SerializeField] private InteractionType _activeInteractionType;
+    enum InteractionType { Build, Selection, Interaction, Demolish };
+    public enum MouseClickType { Pressed, Released, Held, None };
 
     private Camera _camera = null;
     private bool _clickIsHeld = false;
@@ -28,24 +15,16 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        _clickAction.Enable();
-        _buildAction.Enable();
-        _selectAction.Enable();
-        _interactionAction.Enable();
-        _demolishAction.Enable();
-        _deleteAction.Enable();
-        _heightIncreaseAction.Enable();
-        _heightDecreaseAction.Enable();
-
         _camera = Camera.main;
     }
 
     private void UpdateMouseState()
     {
-        bool pressed = _clickAction.WasPressedThisFrame();
-        bool released = _clickAction.WasReleasedThisFrame();
+        var click = InputHandler.Instance.PlayerGameplayActions.Click;
+        bool pressed = click.WasPressedThisFrame();
+        bool released = click.WasReleasedThisFrame();
         MouseClickType clickType = MouseClickType.None;
-        if (pressed && !_eventSystem.IsPointerOverGameObject())
+        if (pressed && !InputHandler.Instance.IsHoveringUI)
         {
             clickType = MouseClickType.Pressed;
         }
@@ -72,10 +51,11 @@ public class Player : MonoBehaviour
 
     private void UpdateInteractionMode()
     {
-        var buildInput = _buildAction.WasPressedThisFrame();
-        var selectInput = _selectAction.WasPressedThisFrame();
-        var interactInput = _interactionAction.WasPressedThisFrame();
-        var demolishInput = _demolishAction.WasPressedThisFrame();
+        var actions = InputHandler.Instance.PlayerGameplayActions;
+        var buildInput = actions.Build.WasPressedThisFrame();
+        var selectInput = actions.Select.WasPressedThisFrame();
+        var interactInput = actions.Interact.WasPressedThisFrame();
+        var demolishInput = actions.Demolish.WasPressedThisFrame();
         if (buildInput)
             _activeInteractionType = InteractionType.Build;
         else if (selectInput)
@@ -88,14 +68,12 @@ public class Player : MonoBehaviour
 
     private void UpdateHeight()
     {
-        var heightIncreaseInput = _heightIncreaseAction.WasPressedThisFrame();
-        var heightDecreaseInput = _heightDecreaseAction.WasPressedThisFrame();
-
-        if (heightIncreaseInput)
+        float heightChange = InputHandler.Instance.PlayerGameplayActions.HeightChange.ReadValue<float>();
+        if (heightChange > 0)
         {
             _placementGrid.IncreasePlaneHeight();
         }
-        else if (heightDecreaseInput)
+        else if (heightChange < 0)
         {
             _placementGrid.DecreasePlaneHeight();
         }
@@ -112,9 +90,9 @@ public class Player : MonoBehaviour
         }
         else
         {
-            if (_deleteAction.WasPressedThisFrame())
+            if (InputHandler.Instance.PlayerGameplayActions.Delete.WasPressedThisFrame())
             {
-                AttemptDemolish();
+                DestroySelectedObject();
             }
             else
             {
@@ -187,6 +165,14 @@ public class Player : MonoBehaviour
             return;
 
         _placementGrid.SnapObjectToGrid(_selectedObject);
+    }
+    private void DestroySelectedObject()
+    {
+        if (_selectedObject != null)
+        {
+            Destroy(_selectedObject);
+            _selectedObject = null;
+        }
     }
     private void AttemptDemolish()
     {

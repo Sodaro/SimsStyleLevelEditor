@@ -6,11 +6,11 @@ using UnityEngine.InputSystem;
 public struct BuildOptions
 {
     public enum PlacementRules { GridCenter, GridLines };
-    public bool RectanglePlacement;
-    public bool DeleteOverlappingObjects;
+    public enum PlacementMode { HollowRectangle, FilledRectangle};
+    public PlacementMode ActivePlacementMode;
     public PlacementRules ActivePlacementRules;
+    public bool DeleteOverlappingObjects;
 }
-
 
 public class PlacementGrid : MonoBehaviour
 {
@@ -20,25 +20,19 @@ public class PlacementGrid : MonoBehaviour
     public event OnObjectDeleted onObjectDeleted;
 
     [SerializeField] private Toolbar _toolbar;
-    [SerializeField] int _gridSize = 100;
-
+    [SerializeField] private int _gridSize = 100;
     [SerializeField] private GameSerializer _gameSerializer;
-
     [SerializeField] private Material _lineMaterial;
     [SerializeField] private GameObject _buildPreview;
 
     private (Vector3, Vector3)[] _gridVertices;
     private (string, GameObject) _selectedAddressable;
-
     private BuildOptions _buildOptions;
     private Vector3? _buildStartPoint = null;
     private Vector3? _buildEndPoint = null;
-
     private Vector3 _mouseGridPosition = Vector3.zero;
-
-    Plane plane;
-    int _currentHeight = 0;
-
+    private Plane plane;
+    private int _currentHeight = 0;
     private Bounds _gridBounds;
 
     private void CreateGrid()
@@ -75,21 +69,35 @@ public class PlacementGrid : MonoBehaviour
     }
 
     private void OnOptionsDropdownValueChanged(int value) => _buildOptions.ActivePlacementRules = (BuildOptions.PlacementRules)value;
-    private void OnRectanglePlacementToggleValueChanged(bool value) => _buildOptions.RectanglePlacement = value;
+    private void OnHollowRectanglePlacementToggleValueChanged(bool value)
+    {
+        if (value)
+        {
+            _buildOptions.ActivePlacementMode = BuildOptions.PlacementMode.HollowRectangle;
+        }
+    }
+    private void OnFilledRectanglePlacementToggleValueChanged(bool value)
+    {
+        if (value)
+        {
+            _buildOptions.ActivePlacementMode = BuildOptions.PlacementMode.FilledRectangle;
+        }
+    }
     private void OnDeleteOverlappingToggleValueChanged(bool value) => _buildOptions.DeleteOverlappingObjects = value;
 
     private void OnEnable()
     {
         _toolbar.OptionsDropdown.onValueChanged.AddListener(OnOptionsDropdownValueChanged);
-        _toolbar.PlaceRectangleToggle.onValueChanged.AddListener(OnRectanglePlacementToggleValueChanged);
+        _toolbar.PlaceHollowRectangleToggle.onValueChanged.AddListener(OnHollowRectanglePlacementToggleValueChanged);
+        _toolbar.PlaceFilledRectangleToggle.onValueChanged.AddListener(OnFilledRectanglePlacementToggleValueChanged);
         _toolbar.DeleteOverlapToggle.onValueChanged.AddListener(OnDeleteOverlappingToggleValueChanged);
     }
-
 
     private void OnDisable()
     {
         _toolbar.OptionsDropdown.onValueChanged.RemoveListener(OnOptionsDropdownValueChanged);
-        _toolbar.PlaceRectangleToggle.onValueChanged.RemoveListener(OnRectanglePlacementToggleValueChanged);
+        _toolbar.PlaceHollowRectangleToggle.onValueChanged.RemoveListener(OnHollowRectanglePlacementToggleValueChanged);
+        _toolbar.PlaceFilledRectangleToggle.onValueChanged.RemoveListener(OnFilledRectanglePlacementToggleValueChanged);
         _toolbar.DeleteOverlapToggle.onValueChanged.RemoveListener(OnDeleteOverlappingToggleValueChanged);
     }
 
@@ -200,43 +208,72 @@ public class PlacementGrid : MonoBehaviour
         }
         var start = _buildStartPoint.Value;
         var end = _buildEndPoint.Value;
-        if (_buildOptions.RectanglePlacement)
+        switch (_buildOptions.ActivePlacementMode)
         {
-            if (start.z == end.z || start.x == end.x)
-            {
-                _buildEndPoint = null;
-                _buildStartPoint = null;
-                return;
-            }
-
-            var minZ = Mathf.Min(start.z, end.z);
-            var maxZ = Mathf.Max(start.z, end.z);
-            var minX = Mathf.Min(start.x, end.x);
-            var maxX = Mathf.Max(start.x, end.x);
-            var tl = new Vector3(minX, start.y, maxZ);
-            var tr = new Vector3(maxX, start.y, maxZ);
-            var bl = new Vector3(minX, start.y, minZ);
-            var br = new Vector3(maxX, start.y, minZ);
-            if (_buildOptions.DeleteOverlappingObjects)
-            {
-                DestroyObjectsInBox(start, end);
-            }
-            PlaceWall(tl, tr);
-            PlaceWall(tr, br);
-            PlaceWall(br, bl);
-            PlaceWall(bl, tl);
-        }
-        else
-        {
-            PlaceWall(start, end);
+            case BuildOptions.PlacementMode.HollowRectangle:
+                PlaceHollowRectangle(start, end);
+                break;
+            case BuildOptions.PlacementMode.FilledRectangle:
+                PlaceFilledRectangle(start, end);
+                break;
+            default:
+                break;
         }
 
         _buildEndPoint = null;
         _buildStartPoint = null;
         _buildPreview.SetActive(false);
     }
+    private void PlaceHollowRectangle(Vector3 startPoint, Vector3 endPoint)
+    {
+        if (startPoint.z == endPoint.z || startPoint.x == endPoint.x)
+        {
+            _buildEndPoint = null;
+            _buildStartPoint = null;
+            return;
+        }
+        if (_buildOptions.DeleteOverlappingObjects)
+        {
+            DestroyObjectsInBox(startPoint, endPoint);
+        }
 
-    void PlaceWall(Vector3 startPoint, Vector3 endPoint)
+        var minZ = Mathf.Min(startPoint.z, endPoint.z);
+        var maxZ = Mathf.Max(startPoint.z, endPoint.z);
+        var minX = Mathf.Min(startPoint.x, endPoint.x);
+        var maxX = Mathf.Max(startPoint.x, endPoint.x);
+        var tl = new Vector3(minX, startPoint.y, maxZ);
+        var tr = new Vector3(maxX, startPoint.y, maxZ);
+        var bl = new Vector3(minX, startPoint.y, minZ);
+        var br = new Vector3(maxX, startPoint.y, minZ);
+
+        PlaceWall(tl, tr);
+        PlaceWall(tr, br);
+        PlaceWall(br, bl);
+        PlaceWall(bl, tl);
+    }
+    private void PlaceFilledRectangle(Vector3 startPoint, Vector3 endPoint)
+    {
+        if (startPoint.z == endPoint.z || startPoint.x == endPoint.x)
+        {
+            _buildEndPoint = null;
+            _buildStartPoint = null;
+            return;
+        }
+        if (_buildOptions.DeleteOverlappingObjects)
+        {
+            DestroyObjectsInBox(startPoint, endPoint);
+        }
+        var dir = Mathf.Sign(endPoint.z - startPoint.z);
+        int count = (int)Mathf.Abs(startPoint.z - endPoint.z);
+        for (int i = 0; i < count; i++)
+        {
+            var rowStart = new Vector3(startPoint.x, startPoint.y, startPoint.z + i*dir);
+            var rowEnd = new Vector3(endPoint.x, startPoint.y, startPoint.z + i * dir);
+            PlaceWall(rowStart, rowEnd);
+        }
+    }
+
+    private void PlaceWall(Vector3 startPoint, Vector3 endPoint)
     {
         var diff = endPoint - startPoint;
         var count = Mathf.Max(diff.magnitude / GridUtilities.TileSize, 1);
@@ -250,9 +287,7 @@ public class PlacementGrid : MonoBehaviour
         }
     }
 
-
-
-    void OnRenderObject()
+    private void OnRenderObject()
     {
         _lineMaterial.SetPass(0);
         GL.PushMatrix();
@@ -299,7 +334,7 @@ public class PlacementGrid : MonoBehaviour
 
         var diff = _mouseGridPosition - _buildStartPoint.Value;
         _buildPreview.transform.position = (_buildStartPoint.Value + _mouseGridPosition) / 2;
-        if (_buildOptions.RectanglePlacement)
+        if (_buildOptions.ActivePlacementMode  == BuildOptions.PlacementMode.HollowRectangle || _buildOptions.ActivePlacementMode == BuildOptions.PlacementMode.FilledRectangle)
         {
             var x = Mathf.Abs(diff.x);
             var y = Mathf.Max(1, Mathf.Abs(diff.y));

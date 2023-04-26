@@ -6,5 +6,6 @@ public class Toolbar : MonoBehaviour
 {
     public TMP_Dropdown OptionsDropdown;
     public Toggle DeleteOverlapToggle;
-    public Toggle PlaceRectangleToggle;
+    public Toggle PlaceHollowRectangleToggle;
+    public Toggle PlaceFilledRectangleToggle;
 }
