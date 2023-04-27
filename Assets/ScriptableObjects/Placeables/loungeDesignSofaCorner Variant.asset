@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bd32571c19591348b63f05fca200aca, type: 3}
+  m_Name: loungeDesignSofaCorner Variant
+  m_EditorClassIdentifier: 
+  Prefab: {fileID: 5895437884564105041, guid: f22059768fff21241bb711fd2420895a, type: 3}
+  Sprite: {fileID: 21300000, guid: a13a31070212c7e44afc0b1c70c70ffb, type: 3}

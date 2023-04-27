@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -15,9 +16,13 @@ public struct BuildOptions
 public class PlacementGrid : MonoBehaviour
 {
     public delegate void OnObjectPlaced(GameObject prefab, GameObject instance);
-    public delegate void OnObjectDeleted(GameObject instance);
+    public delegate void OnObjectsPlaced(GameObject prefab, List<GameObject> instances);
+    public delegate void OnObjectDeleted(int instanceID);
+    public delegate void OnObjectsDeleted(List<int> instanceIDs);
     public event OnObjectPlaced onObjectPlaced;
+    public event OnObjectsPlaced onObjectsPlaced;
     public event OnObjectDeleted onObjectDeleted;
+    public event OnObjectsDeleted onObjectsDeleted;
 
     [SerializeField] private Toolbar _toolbar;
     [SerializeField] private int _gridSize = 100;
@@ -101,10 +106,10 @@ public class PlacementGrid : MonoBehaviour
         _toolbar.DeleteOverlapToggle.onValueChanged.RemoveListener(OnDeleteOverlappingToggleValueChanged);
     }
 
-    private void _gameSerializer_onPlaceablesLoaded(System.Collections.Generic.Dictionary<string, GameObject> pairs)
+    private void _gameSerializer_onPlaceablesLoaded(System.Collections.Generic.Dictionary<string, PlaceableScriptableObject> pairs)
     {
         var pair = pairs.ElementAt(0);
-        _selectedAddressable = (pair.Key, pair.Value);
+        _selectedAddressable = (pair.Key, pair.Value.Prefab);
     }
 
     private bool TryConvertMouseToGrid(out Vector3? mousePosition)
@@ -182,12 +187,14 @@ public class PlacementGrid : MonoBehaviour
         var minX = Mathf.Min(start.x, end.x);
         var maxX = Mathf.Max(start.x, end.x);
         var colliders = Physics.OverlapBox((start + end) / 2, new Vector3((maxX - minX) / 2, 10, (maxZ - minZ) / 2), Quaternion.identity, 1);
+        var destroyedList = new List<int>();
         foreach (var collider in colliders)
         {
             var objToDestroy = collider.transform.gameObject;
-            onObjectDeleted.Invoke(objToDestroy);
+            destroyedList.Add(objToDestroy.GetInstanceID());
             Destroy(objToDestroy);
         }
+        onObjectsDeleted.Invoke(destroyedList);
     }
 
     private void FinishBuild()
@@ -208,23 +215,27 @@ public class PlacementGrid : MonoBehaviour
         }
         var start = _buildStartPoint.Value;
         var end = _buildEndPoint.Value;
+        var placedObjects = new List<GameObject>();
         switch (_buildOptions.ActivePlacementMode)
         {
             case BuildOptions.PlacementMode.HollowRectangle:
-                PlaceHollowRectangle(start, end);
+                PlaceHollowRectangle(start, end, ref placedObjects);
                 break;
             case BuildOptions.PlacementMode.FilledRectangle:
-                PlaceFilledRectangle(start, end);
+                PlaceFilledRectangle(start, end, ref placedObjects);
                 break;
             default:
                 break;
         }
-
+        if (placedObjects.Count > 0)
+        {
+            onObjectsPlaced.Invoke(_selectedAddressable.Item2, placedObjects);
+        }
         _buildEndPoint = null;
         _buildStartPoint = null;
         _buildPreview.SetActive(false);
     }
-    private void PlaceHollowRectangle(Vector3 startPoint, Vector3 endPoint)
+    private void PlaceHollowRectangle(Vector3 startPoint, Vector3 endPoint, ref List<GameObject> placedObjects)
     {
         if (startPoint.z == endPoint.z || startPoint.x == endPoint.x)
         {
@@ -246,12 +257,12 @@ public class PlacementGrid : MonoBehaviour
         var bl = new Vector3(minX, startPoint.y, minZ);
         var br = new Vector3(maxX, startPoint.y, minZ);
 
-        PlaceWall(tl, tr);
-        PlaceWall(tr, br);
-        PlaceWall(br, bl);
-        PlaceWall(bl, tl);
+        PlaceRow(tl, tr, ref placedObjects);
+        PlaceRow(tr, br, ref placedObjects);
+        PlaceRow(br, bl, ref placedObjects);
+        PlaceRow(bl, tl, ref placedObjects);
     }
-    private void PlaceFilledRectangle(Vector3 startPoint, Vector3 endPoint)
+    private void PlaceFilledRectangle(Vector3 startPoint, Vector3 endPoint, ref List<GameObject> placedObjects)
     {
         if (startPoint.z == endPoint.z || startPoint.x == endPoint.x)
         {
@@ -267,23 +278,21 @@ public class PlacementGrid : MonoBehaviour
         int count = (int)Mathf.Abs(startPoint.z - endPoint.z);
         for (int i = 0; i < count; i++)
         {
-            var rowStart = new Vector3(startPoint.x, startPoint.y, startPoint.z + i*dir);
-            var rowEnd = new Vector3(endPoint.x, startPoint.y, startPoint.z + i * dir);
-            PlaceWall(rowStart, rowEnd);
+            var rowStart = new Vector3(startPoint.x, startPoint.y, startPoint.z + i * GridUtilities.TileSize * dir);
+            var rowEnd = new Vector3(endPoint.x, startPoint.y, startPoint.z + i * GridUtilities.TileSize * dir);
+            PlaceRow(rowStart, rowEnd, ref placedObjects);
         }
     }
 
-    private void PlaceWall(Vector3 startPoint, Vector3 endPoint)
+    private void PlaceRow(Vector3 startPoint, Vector3 endPoint, ref List<GameObject> placedObjects)
     {
         var diff = endPoint - startPoint;
         var count = Mathf.Max(diff.magnitude / GridUtilities.TileSize, 1);
         for (int i = 0; i < count; i++)
         {
-
-            //TODO: Fix this so we don't fire 100 events, either package data or use other way of storing/sending data
             var rot = Quaternion.LookRotation(diff.normalized, Vector3.up);
             var instance = Instantiate(_selectedAddressable.Item2, startPoint + diff.normalized * i * GridUtilities.TileSize, rot, transform.parent);
-            onObjectPlaced.Invoke(_selectedAddressable.Item2, instance);
+            placedObjects.Add(instance);   
         }
     }
 
