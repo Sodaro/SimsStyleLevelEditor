@@ -15,26 +15,6 @@ using UnityEngine.AddressableAssets;
 
 public class PlaceableAddressableGenerator : MonoBehaviour
 {
-    //[MenuItem("PlaceableAddressableGenerator/Extract preview images from folder")]
-    //static void ExtractPreviewImages()
-    //{
-    //    string extractionPath = EditorUtility.OpenFolderPanel("Select Folder to extract from", Application.dataPath, "");
-    //    if (string.IsNullOrEmpty(extractionPath))
-    //    {
-    //        return;
-    //    }
-
-    //    string targetPath = EditorUtility.OpenFolderPanel("Select Folder to extract to", Application.dataPath, "");
-    //    if (string.IsNullOrEmpty(targetPath))
-    //    {
-    //        return;
-    //    }
-
-    //    var assetPath = "Assets" + extractionPath.Replace(Application.dataPath, "");
-    //    string[] guids = AssetDatabase.FindAssets("", new[] { assetPath });
-    //    FetchPreviews(guids, targetPath);
-    //}
-
     [MenuItem("PlaceableAddressableGenerator/Generate Placeables")]
     static async void ExtractPreviewImages()
     {
