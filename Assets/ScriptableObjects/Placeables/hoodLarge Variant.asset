@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bd32571c19591348b63f05fca200aca, type: 3}
+  m_Name: hoodLarge Variant
+  m_EditorClassIdentifier: 
+  Prefab: {fileID: 13195174649064262, guid: 3cec9a8713e59dd4388754c119599079, type: 3}
+  Sprite: {fileID: 21300000, guid: 4262198a4d779ef4881d4545b3f3b6a8, type: 3}

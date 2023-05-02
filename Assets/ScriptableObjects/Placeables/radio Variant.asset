@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bd32571c19591348b63f05fca200aca, type: 3}
+  m_Name: radio Variant
+  m_EditorClassIdentifier: 
+  Prefab: {fileID: 2470189787497225017, guid: 0ec656e64d2ed75448bdcaa2abb364c5, type: 3}
+  Sprite: {fileID: 21300000, guid: 63d9d6a57d39f5b4b9efd6053b0051b2, type: 3}

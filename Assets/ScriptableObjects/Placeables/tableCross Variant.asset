@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bd32571c19591348b63f05fca200aca, type: 3}
+  m_Name: tableCross Variant
+  m_EditorClassIdentifier: 
+  Prefab: {fileID: 149364621778527586, guid: 1b321abb87ebeed4aad578b04ce3a1a8, type: 3}
+  Sprite: {fileID: 21300000, guid: 261b7e7b8b95db84696c24988d7cd2a0, type: 3}

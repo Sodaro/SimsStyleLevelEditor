@@ -20,51 +20,51 @@ public class ButtonGenerator : MonoBehaviour
         _gameSerializer.onPlaceablesLoaded += _gameSerializer_onPlaceablesLoaded;
     }
 
-    private IEnumerator LoadIcons(System.Collections.Generic.Dictionary<string, GameObject> pairs)
+    private void GenerateButtons(System.Collections.Generic.Dictionary<string, PlaceableScriptableObject> pairs)
     {
-        //find all the locations with label "placeable"
-        var loadResourceLocationsHandle
-            = Addressables.LoadResourceLocationsAsync("icon", typeof(Sprite));
+        ////find all the locations with label "placeable"
+        //var loadResourceLocationsHandle
+        //    = Addressables.LoadResourceLocationsAsync("icon", typeof(Sprite));
 
-        if (!loadResourceLocationsHandle.IsDone)
-            yield return loadResourceLocationsHandle;
+        //if (!loadResourceLocationsHandle.IsDone)
+        //    yield return loadResourceLocationsHandle;
 
-        //start each location loading
-        List<AsyncOperationHandle> opList = new List<AsyncOperationHandle>();
+        ////start each location loading
+        //List<AsyncOperationHandle> opList = new List<AsyncOperationHandle>();
 
-        foreach (IResourceLocation location in loadResourceLocationsHandle.Result)
-        {
-            AsyncOperationHandle<Sprite> loadAssetHandle
-                = Addressables.LoadAssetAsync<Sprite>(location);
-            loadAssetHandle.Completed +=
-                obj =>
-                {
-                    _icons.Add(location.PrimaryKey, obj.Result);
-                };
-            opList.Add(loadAssetHandle);
-        }
-        //create a GroupOperation to wait on all the above loads at once. 
-        var groupOp = Addressables.ResourceManager.CreateGenericGroupOperation(opList);
+        //foreach (IResourceLocation location in loadResourceLocationsHandle.Result)
+        //{
+        //    AsyncOperationHandle<Sprite> loadAssetHandle
+        //        = Addressables.LoadAssetAsync<Sprite>(location);
+        //    loadAssetHandle.Completed +=
+        //        obj =>
+        //        {
+        //            _icons.Add(location.PrimaryKey, obj.Result);
+        //        };
+        //    opList.Add(loadAssetHandle);
+        //}
+        ////create a GroupOperation to wait on all the above loads at once. 
+        //var groupOp = Addressables.ResourceManager.CreateGenericGroupOperation(opList);
 
-        if (!groupOp.IsDone)
-            yield return groupOp;
+        //if (!groupOp.IsDone)
+        //    yield return groupOp;
 
-        Addressables.Release(loadResourceLocationsHandle);
+        //Addressables.Release(loadResourceLocationsHandle);
 
         foreach (var data in pairs)
         {
             var button = Instantiate(_buttonPrefab, transform);
             button.onClick.AddListener(delegate
             {
-                _placementGrid.SetObjectPrefab((data.Key, data.Value));
+                _placementGrid.SetObjectPrefab((data.Key, data.Value.Prefab));
             });
-            button.GetComponent<Image>().sprite = _icons[data.Key];
+            button.GetComponent<Image>().sprite = data.Value.Sprite;
         }
     }
 
-    private void _gameSerializer_onPlaceablesLoaded(System.Collections.Generic.Dictionary<string, GameObject> pairs)
+    private void _gameSerializer_onPlaceablesLoaded(System.Collections.Generic.Dictionary<string, PlaceableScriptableObject> pairs)
     {
-        StartCoroutine(LoadIcons(pairs));
+        GenerateButtons(pairs);
         _gameSerializer.onPlaceablesLoaded -= _gameSerializer_onPlaceablesLoaded;
     }
 }

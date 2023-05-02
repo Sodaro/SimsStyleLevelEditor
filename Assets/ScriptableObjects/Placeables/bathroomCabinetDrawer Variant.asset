@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bd32571c19591348b63f05fca200aca, type: 3}
+  m_Name: bathroomCabinetDrawer Variant
+  m_EditorClassIdentifier: 
+  Prefab: {fileID: 5204229702576808024, guid: 96a2917e5285eaa46a5bab977b8adfee, type: 3}
+  Sprite: {fileID: 21300000, guid: a1cd9c65c47107a498eb788b83ec22d9, type: 3}

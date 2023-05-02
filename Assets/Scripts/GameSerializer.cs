@@ -16,7 +16,7 @@ public class GameSerializer : MonoBehaviour
 {
     //public Dictionary<int, ResourceData> DataBase;
 
-    public delegate void OnPlaceablesLoaded(Dictionary<string, GameObject> pairs);
+    public delegate void OnPlaceablesLoaded(Dictionary<string, PlaceableScriptableObject> pairs);
     public event OnPlaceablesLoaded onPlaceablesLoaded;
 
 
@@ -25,8 +25,7 @@ public class GameSerializer : MonoBehaviour
     private Dictionary<int, GameInstanceData> _sceneData;
 
 
-    public Dictionary<string, GameObject> PlaceableObjects
-    = new Dictionary<string, GameObject>();
+    public Dictionary<string, PlaceableScriptableObject> PlaceableObjects = new Dictionary<string, PlaceableScriptableObject>();
 
     Scene _currentScene;
 
@@ -35,7 +34,7 @@ public class GameSerializer : MonoBehaviour
     {
         //find all the locations with label "placeable"
         var loadResourceLocationsHandle
-            = Addressables.LoadResourceLocationsAsync("placeable", typeof(GameObject));
+            = Addressables.LoadResourceLocationsAsync("placeable", typeof(PlaceableScriptableObject));
 
         if (!loadResourceLocationsHandle.IsDone)
             yield return loadResourceLocationsHandle;
@@ -45,8 +44,8 @@ public class GameSerializer : MonoBehaviour
 
         foreach (IResourceLocation location in loadResourceLocationsHandle.Result)
         {
-            AsyncOperationHandle<GameObject> loadAssetHandle
-                = Addressables.LoadAssetAsync<GameObject>(location);
+            AsyncOperationHandle<PlaceableScriptableObject> loadAssetHandle
+                = Addressables.LoadAssetAsync<PlaceableScriptableObject>(location);
             loadAssetHandle.Completed +=
                 obj => { PlaceableObjects.Add(location.PrimaryKey, obj.Result); };
             opList.Add(loadAssetHandle);
@@ -60,7 +59,6 @@ public class GameSerializer : MonoBehaviour
         Addressables.Release(loadResourceLocationsHandle);
 
         onPlaceablesLoaded.Invoke(PlaceableObjects);
-
     }
 
 
@@ -73,14 +71,31 @@ public class GameSerializer : MonoBehaviour
 #endif
         //DataBase = JsonConvert.DeserializeObject<Dictionary<int, ResourceData>>(File.ReadAllText(ProjectGlobals.DataPath));
         _sceneData = new Dictionary<int, GameInstanceData>();
-        _placementGrid.onObjectPlaced += _placementGrid_onObjectPlaced;
-        _placementGrid.onObjectDeleted += _placementGrid_onObjectDeleted;
+        _placementGrid.onObjectPlaced += OnObjectPlaced;
+        _placementGrid.onObjectDeleted += OnObjectDeleted;
+        _placementGrid.onObjectsPlaced += OnObjectsPlaced;
+        _placementGrid.onObjectsDeleted += OnObjectsDeleted;
         StartCoroutine(PreloadPlaceables());
     }
 
-    private void _placementGrid_onObjectDeleted(GameObject instance)
+    private void OnObjectsDeleted(List<int> instanceIDs)
     {
-        int id = instance.GetInstanceID();
+        foreach (int id in instanceIDs)
+        {
+            RemoveInstanceData(id);
+        }
+    }
+
+    private void OnObjectsPlaced(GameObject prefab, List<GameObject> instances)
+    {
+        foreach (GameObject obj in instances)
+        {
+            StoreInstanceData(prefab, obj);
+        }
+    }
+
+    private void RemoveInstanceData(int id)
+    {
         if (!_sceneData.ContainsKey(id))
         {
             return;
@@ -88,16 +103,25 @@ public class GameSerializer : MonoBehaviour
         _sceneData.Remove(id);
     }
 
-    private void _placementGrid_onObjectPlaced(GameObject prefab, GameObject instance)
+    private void StoreInstanceData(GameObject prefab, GameObject instance)
     {
         _sceneData.Add(instance.GetInstanceID(), new GameInstanceData
         {
-            //ResourceData = DataBase[prefab.GetInstanceID()],
             InstancePosition = new(instance.transform.position),
             InstanceRotation = new(instance.transform.rotation),
             InstanceScale = new(instance.transform.localScale),
             AddressableKey = prefab.name,
         });
+    }
+
+    private void OnObjectDeleted(int instanceID)
+    {
+        RemoveInstanceData(instanceID);
+    }
+
+    private void OnObjectPlaced(GameObject prefab, GameObject instance)
+    {
+        StoreInstanceData(prefab, instance);
     }
 
     private void Start()
@@ -152,7 +176,7 @@ public class GameSerializer : MonoBehaviour
             Vector3 pos = instanceData.InstancePosition.ToVector3();
             Vector3 scale = instanceData.InstanceScale.ToVector3();
             Quaternion rot = instanceData.InstanceRotation.ToQuaternion();
-            var instance = Instantiate(PlaceableObjects[instanceData.AddressableKey], pos, rot);
+            var instance = Instantiate(PlaceableObjects[instanceData.AddressableKey].Prefab, pos, rot);
             instance.transform.localScale = scale;
             newData[instance.GetInstanceID()] = instanceData;
         }

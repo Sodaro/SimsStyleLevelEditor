@@ -27,734 +27,848 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: a62435ffe94e82749810313afe545406
-    m_Address: road_bend Variant
+  - m_GUID: f08da9eb78ac9ac44bb1ad97b89f733f
+    m_Address: f08da9eb78ac9ac44bb1ad97b89f733f
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - 
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 48db7491c351fc941aa7e933d219aec6
+    m_Address: floorHalf Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 072c69979ffb4784a80cdd028895cdac
-    m_Address: road_straight Variant
+  - m_GUID: f191f0751bd0fd04cbb1a9731583313f
+    m_Address: bathroomMirror Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 5dddbf2c3f9fe8545bf6ea0eafddd9d3
-    m_Address: road_crossroad Variant
+  - m_GUID: 5c50fe31eacf0544698f21c478bb7ae9
+    m_Address: bathroomSinkSquare Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 93092c00cb68e034487636fadb5c4cdd
-    m_Address: road_crossing Variant
+  - m_GUID: e1f52c316eb844941b32f5e65b38b108
+    m_Address: stairsOpen Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 8670568455fab464e9a5495d33a8faf6
-    m_Address: road_bridge Variant
+  - m_GUID: 67631a12f0b370e42862b93945e91b7c
+    m_Address: coatRack Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 3308358705636f94faea5cb3ce95bb7a
-    m_Address: road_straight Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - icon
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: cead18006a2d9c64fa6309bba02e962c
-    m_Address: road_crossroad Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - icon
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 11f697f1aa9adfc40a79a7956d9e3daa
-    m_Address: road_crossing Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - icon
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 88d250fa01427ec49acf3cdc2d56cdf4
-    m_Address: road_bridge Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - icon
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 642a9fa51cca2684da40f0a0f53b443d
-    m_Address: road_bend Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - icon
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 1a695231c56f0334998c847431fc9c5f
-    m_Address: conveyor-bars-stripe-fence Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - icon
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: f57145060933fd74da32b996f8f8105e
-    m_Address: arrow Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - icon
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 51e911e3d388f9a418d4f4cfbf51d719
-    m_Address: box-large Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - icon
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: e4c3edd31568cba41b8612bf4dc0e382
-    m_Address: box-long Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - icon
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 831140dd7fe3f694fa1e92bbe178b2f9
-    m_Address: box-small Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - icon
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 44e98f555e4d0ef4f8c8bbf086bbff45
-    m_Address: box-wide Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - icon
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 4a8a4883e02188043b98359e1cf241fb
-    m_Address: conveyor Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - icon
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 51f5ef91b4d415b4aa50d7ec5228dadb
-    m_Address: conveyor-bars Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - icon
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 4d30c0d19e0fd0440b02d8920df98aa9
-    m_Address: conveyor-bars-fence Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - icon
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 58abdfe09fa304443a832f2c44ec6909
-    m_Address: conveyor-bars-high Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - icon
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 55a772b85de358046b5ce3c8a42c95e9
-    m_Address: conveyor-bars-sides Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - icon
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: aa6d4bb313e1ada4489e6d55c8240506
-    m_Address: conveyor-bars-stripe Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - icon
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 0e8554c0e882fe2458cf6c5d4b3e9e2f
-    m_Address: conveyor-bars-stripe-high Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - icon
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: e90997b84f62c2a479bdae7b68532d06
-    m_Address: conveyor-bars-stripe-side Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - icon
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 086fd50c4519209428533080137349a5
-    m_Address: conveyor-long Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - icon
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 30c7ddce81a38494b9c2670f0b003679
-    m_Address: conveyor-long-sides Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - icon
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 63d6de690631ecb45ab6cd5167fe32e9
-    m_Address: conveyor-long-stripe Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - icon
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 6e16d50de21862c46ad5718e73a3a93e
-    m_Address: conveyor-long-stripe-sides Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - icon
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 63976a40e8b3e2a4ba16cd7d3d6d05e4
-    m_Address: conveyor-sides Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - icon
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 4cd8264b7efcd804683572637b4f636b
-    m_Address: conveyor-stripe Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - icon
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: eb3401133708afe419f136a7e19f8c47
-    m_Address: conveyor-stripe-sides Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - icon
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 33228a6b74e5137489cb86258f00669e
-    m_Address: cover Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - icon
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: a749bf8ac7dee93489aad1594fd530ca
-    m_Address: cover-bar Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - icon
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 6af677daa04d4034aa4524d430094611
-    m_Address: cover-corner Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - icon
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: f193be5821ab7304eb5b3509ed4547f7
-    m_Address: cover-hopper Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - icon
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 0bd9e901e97d7b447ae6a70f28abd5b9
-    m_Address: cover-stripe Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - icon
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: e044a5ad40ffced4fa134d6bf078ed72
-    m_Address: cover-stripe-bar Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - icon
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 15c212066309c04498af6efc1acc4e85
-    m_Address: cover-stripe-corner Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - icon
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: c616c58dacd42a34b8933c7c505be3f2
-    m_Address: cover-stripe-hopper Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - icon
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: cbef3fe2288a5a240ba93d35631e1f61
-    m_Address: cover-stripe-top Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - icon
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 60698e57378653d41b20acc8771e8111
-    m_Address: cover-stripe-window Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - icon
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: d55c9d0fac2abc247b2657b5d9499d95
-    m_Address: cover-top Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - icon
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: fc0f6451c3378bb49aab017362cd0c8a
-    m_Address: cover-window Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - icon
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: bec70d33ded4f894795a096d31a04d12
-    m_Address: door Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - icon
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 17594f0a996b5b940a0a1082531293a1
-    m_Address: door-wide-closed Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - icon
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: e98e9c39ba48da74998c2704440ed70f
-    m_Address: door-wide-half Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - icon
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 9938be927b4797a4bb3f3da6a1d3a701
-    m_Address: door-wide-open Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - icon
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: a75e76ae2fb123b49938397d051f04d1
-    m_Address: floor Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - icon
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 78b3b49c1a55a264faa4431d34de31d7
-    m_Address: floor-large Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - icon
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 90c029fd5f84a694c9ab30ed11614304
-    m_Address: structure-corner-inner Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - icon
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 01d616f881fe0904aa3de68c543bc80f
-    m_Address: structure-corner-outer Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - icon
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: f852d3c59dba9974899afd370bb89f4d
-    m_Address: structure-doorway Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - icon
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 2d235b299ae3450449dc4271aea96b0a
-    m_Address: structure-doorway-wide Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - icon
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: d2b56257bd9d72b4ab385e1030c44dd7
-    m_Address: structure-high Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - icon
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: aca5dd0d08d13b349aea5304011f8776
-    m_Address: structure-medium Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - icon
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 4f1319ba5fdd17a4fad11508f79e328a
-    m_Address: structure-short Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - icon
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: d3df6bd7667a294448d0d0fe21242f35
-    m_Address: structure-tall Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - icon
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 2f22b43a7de3a904897d6f8f393202a2
-    m_Address: structure-wall Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - icon
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 89636b95425644f44bfa86d7834eee88
-    m_Address: structure-window Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - icon
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: b075ad7978b1f1d41ace8cdf747877e9
-    m_Address: structure-window-wide Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - icon
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: fbbb5685cd1dac84bb36007c4d33da59
-    m_Address: structure-yellow-high Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - icon
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 43115cbed75ed7b41a0266bf91defc86
-    m_Address: structure-yellow-medium Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - icon
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 7af61e74ad1c96e4c90e2e68d33c43b9
-    m_Address: structure-yellow-short Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - icon
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 623df049527b1f3408df01f45a8b9e5c
-    m_Address: structure-yellow-tall Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - icon
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 0ce593b443dc18a49a166370af796b28
-    m_Address: top Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - icon
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: c765b1c7cbd405942bcd07cd71d9d91e
-    m_Address: top-large Variant
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - icon
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 2861ff5d6004e0b4b9a35a0f357eec42
-    m_Address: arrow Variant
+  - m_GUID: 0f1b2a509f9c2a24eaa00f92b4f8fbea
+    m_Address: kitchenFridgeLarge Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 1b53e1d699ee2b34b96425e85860e80f
-    m_Address: box-large Variant
+  - m_GUID: b0660377b68a98d4ab99f0856fd51d33
+    m_Address: pillow Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: d8c6cf495b60f9a4d971dd2b32be4d35
-    m_Address: box-long Variant
+  - m_GUID: d709351f24913d347af3de9fe9e9622e
+    m_Address: shower Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 3fafd96575ed1cc4fb80e6553fb3107f
-    m_Address: box-small Variant
+  - m_GUID: 2744f18d13bd8724eae80cad77db3917
+    m_Address: cardboardBoxOpen Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 67372466f1d2a01498cd253dafb8b8b2
-    m_Address: box-wide Variant
+  - m_GUID: 88fbbc1ca212bf44992f20a4a67060e3
+    m_Address: tableCross Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: da0478c88dca7c84b93424d154dde5e8
-    m_Address: conveyor Variant
+  - m_GUID: c17cb276eec720548816b98907040abc
+    m_Address: computerMouse Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: b1dcb45d0ecac904ca33c062fd0fa222
-    m_Address: conveyor-bars Variant
+  - m_GUID: eacabfb9e3c248d47b98560a0d743b4b
+    m_Address: books Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 40d9dcf0bc7be3642a08da86509cf66f
-    m_Address: conveyor-bars-fence Variant
+  - m_GUID: a19659130b401804286abb6f4cbe496a
+    m_Address: kitchenBarEnd Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 2b44fb12f4686a446b6bad674777353b
-    m_Address: conveyor-bars-high Variant
+  - m_GUID: 6485079801aa3944eb8b11740b481dec
+    m_Address: lampWall Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 4acd346172a511744a70586e005729ae
-    m_Address: conveyor-bars-sides Variant
+  - m_GUID: df2a5874648997b4eb757edfe790a524
+    m_Address: rugSquare Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 9196c7bb6f02a314a8fdd2a8758b9897
-    m_Address: conveyor-bars-stripe Variant
+  - m_GUID: 0f74b4879f4d2b744b6553001e4c2108
+    m_Address: wallDoorwayWide Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 93dd13aca38fe9d42b774d3587bc8330
-    m_Address: conveyor-bars-stripe-fence Variant
+  - m_GUID: 4600369314850bd48b7614420e99af6a
+    m_Address: coatRackStanding Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: a036b2a86414df84789ed956b274fdc8
-    m_Address: conveyor-bars-stripe-high Variant
+  - m_GUID: beeb431319bbf35499b2ff9e86c20066
+    m_Address: tableCoffee Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 99f74a9d7ac4e8d40bfd6ed8d417b510
-    m_Address: conveyor-bars-stripe-side Variant
+  - m_GUID: e4fd8c5082fd9cb4d95ed0618edfb276
+    m_Address: floorCorner Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 6352cc2ace73be140b3cecdc4ec2d09f
-    m_Address: conveyor-long Variant
+  - m_GUID: 2f579e043db8aeb4abe44c5da528130a
+    m_Address: lampSquareCeiling Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 780fcb95fa9794141af1fe6e22695f59
-    m_Address: conveyor-long-sides Variant
+  - m_GUID: 841395576d3430445b74bdf4975779e4
+    m_Address: kitchenStove Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: e1ccaae2ebdc3eb429f2e2f7c5cfd3c7
-    m_Address: conveyor-long-stripe Variant
+  - m_GUID: 4389608d12978c8478bf53c701373125
+    m_Address: kitchenCabinet Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 599553ddbdcc8284e9c5eb53d4e87a33
-    m_Address: conveyor-long-stripe-sides Variant
+  - m_GUID: 49380a1b1e0b91e4a89e5209e52e0719
+    m_Address: plantSmall3 Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: c552352931da1d04caa6907e79180d4e
-    m_Address: conveyor-sides Variant
+  - m_GUID: 21ecb2c2d01e73e49ad27302680cff04
+    m_Address: rugDoormat Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: df16cab0589886d4c8471e3bf2ae1c83
-    m_Address: conveyor-stripe Variant
+  - m_GUID: ebb0f6016657fab4d9097257846c94f5
+    m_Address: lampSquareFloor Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 2973125bbb31a1346952cd13f6d8ac28
-    m_Address: conveyor-stripe-sides Variant
+  - m_GUID: dad6a7c09d54ffd4eb1ad0799ae3188d
+    m_Address: loungeChair Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 6d080a1c6252de44fa7fc7d30b4850ff
-    m_Address: cover Variant
+  - m_GUID: 1bd037b493b0fe84d9c266fa8444e4b2
+    m_Address: kitchenCabinetCornerRound Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 57260ce1048e07d4dba69e5b2330afbc
-    m_Address: cover-bar Variant
+  - m_GUID: 7b731ce42f199164cb878ce1c0101796
+    m_Address: bathroomSink Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: b27cad04dd82eb442aa96b231ff9eef6
-    m_Address: cover-corner Variant
+  - m_GUID: 4c6ea18162bf2604f94f63e6b3c79252
+    m_Address: rugRounded Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 60e608793122c4d45b7f5fac67a8aaaa
-    m_Address: cover-hopper Variant
+  - m_GUID: 7d9b32aa52ecd9040bb42a7117111334
+    m_Address: chairCushion Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 5076e692547d0b34c83f340ee9a40c8b
-    m_Address: cover-stripe Variant
+  - m_GUID: e97f4468533e9a64c97f19f0dff92d10
+    m_Address: radio Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 08f7a357ffd23f04f81ba61c48b2b2e9
-    m_Address: cover-stripe-bar Variant
+  - m_GUID: f29bdf374b69c8145ad348909c1c9c9d
+    m_Address: lampRoundTable Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 4442d2dd759eb0b46931b413de565210
-    m_Address: cover-stripe-corner Variant
+  - m_GUID: 0a4d14fc734a1094280f4c592a0b2c0e
+    m_Address: ceilingFan Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 9f22971c7b27c28479b0938a5f39d7a1
-    m_Address: cover-stripe-hopper Variant
+  - m_GUID: 4dd7de87b2b07c142a4a8a92aeb527f9
+    m_Address: bookcaseClosedWide Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: f2ce2835e1266994f901e4a3e675d07e
-    m_Address: cover-stripe-top Variant
+  - m_GUID: a92f4d6a599211744bb1885d56f5476c
+    m_Address: hoodLarge Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 084351ac3aea9b745b1ba5176063f2f4
-    m_Address: cover-stripe-window Variant
+  - m_GUID: f305eceea24108c47866fde7f821da9d
+    m_Address: bedSingle Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: ddd2faa6c16c8c645a581a2c936ebbbb
-    m_Address: cover-top Variant
+  - m_GUID: ad394ed3b02dc5c4eab37290cc9a548e
+    m_Address: bedDouble Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 9d8423559841f0743a02afb2f3c73bd3
-    m_Address: cover-window Variant
+  - m_GUID: 75f578e89798c8f4785819b70edda2ef
+    m_Address: loungeDesignSofaCorner Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: a3492dc171897764c940b892ab81dabf
-    m_Address: door Variant
+  - m_GUID: bb14e1f4dc0fbdc49ba4398a4646a51d
+    m_Address: stoolBarSquare Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 011791a4ffbce8549a1d04cb8df33bce
-    m_Address: door-wide-closed Variant
+  - m_GUID: 9679046549ba00c46a357aa4d7e0f4b8
+    m_Address: loungeSofa Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 147b229cc3dec51439451a8f86e5837b
-    m_Address: door-wide-half Variant
+  - m_GUID: f1573ad569084bb41a9ab8dff93fba43
+    m_Address: floorCornerRound Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: ecb2d444c39535c428da835e8d3e9ead
-    m_Address: door-wide-open Variant
+  - m_GUID: 48d2f8fc5e4b50446b48fb3d2f894ab6
+    m_Address: stairsOpenSingle Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 121de3f187ec53141a76106384254660
-    m_Address: floor Variant
+  - m_GUID: 2f65bb7df2520e840b4f2169b9ad2845
+    m_Address: speakerSmall Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 3a6e13a1a84923340a46c4d6618a824b
-    m_Address: floor-large Variant
+  - m_GUID: 9ffe26f1a5ad42d4e91dfd68595e1d1d
+    m_Address: kitchenCoffeeMachine Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 79ebf19bffd0a8c439324a4070ccaa25
-    m_Address: structure-corner-inner Variant
+  - m_GUID: 2a7828905e342604786c2aa6123f5acb
+    m_Address: loungeSofaOttoman Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 6f9392146f8097541af838a2a48bae30
-    m_Address: structure-corner-outer Variant
+  - m_GUID: c1f639896207e514495127b6826db56a
+    m_Address: loungeDesignChair Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 98dd319d16c53b248abcd5e6bce8d945
-    m_Address: structure-doorway Variant
+  - m_GUID: b2758a633bdfe1a418be49b9d046b944
+    m_Address: toaster Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 913bf444b412f1c429b3084cef7bf6a7
-    m_Address: structure-doorway-wide Variant
+  - m_GUID: b964b397568c8df4bbc85436c50fbb4c
+    m_Address: kitchenMicrowave Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 46432d6ee131cad459e44ccf5d73458f
-    m_Address: structure-high Variant
+  - m_GUID: 8976e8e75eb85e340ab4879bbbbc23e7
+    m_Address: televisionAntenna Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: e1c79f0efbfdbdb4685d2907f7b53ba8
-    m_Address: structure-medium Variant
+  - m_GUID: 950f50d871c872a4c87c460414859b3f
+    m_Address: benchCushion Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: d3988f1a65cdd7648ac4185897ad32b9
-    m_Address: structure-short Variant
+  - m_GUID: 0b8a24422da5389468d87c9f88f3e8df
+    m_Address: stoolBar Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 2c559fb42f3428e40b70b10aa3ca67d6
-    m_Address: structure-tall Variant
+  - m_GUID: bc17fa900cff8cd4cb686bf9479ab05a
+    m_Address: loungeChairRelax Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 29fc8ae54607cb947ae4934b36daf964
-    m_Address: structure-wall Variant
+  - m_GUID: 69c73fa5d5e779545a7d72f8d3a16d50
+    m_Address: loungeDesignSofa Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 007277307d6cf834b98da129d253fd6e
-    m_Address: structure-window Variant
+  - m_GUID: 31a2138f3d94b5f488e3679cfde3768b
+    m_Address: bookcaseOpen Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 90fab4b62af1ac44f962b5e2f80fcbc1
-    m_Address: structure-window-wide Variant
+  - m_GUID: 2c4d02d27a70f654eace1678c0bb8cbc
+    m_Address: lampSquareTable Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 5b692baa11791e14080c7d01e047385f
-    m_Address: structure-yellow-high Variant
+  - m_GUID: 6ed32fbc1c6a5584ea7fc432cca8eb98
+    m_Address: kitchenCabinetDrawer Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: d8a6c0cbabbabf243916523214221250
-    m_Address: structure-yellow-medium Variant
+  - m_GUID: 48d7741b73a04894188bd38537469bdc
+    m_Address: wallCorner Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 26a369623f79e2740b87c38925f13b60
-    m_Address: structure-yellow-short Variant
+  - m_GUID: f026ddaf63fc78b45acd7638331b9e79
+    m_Address: bathtub Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 1a6c4b583efddfb4e80024c0650e374d
-    m_Address: structure-yellow-tall Variant
+  - m_GUID: 33abb74a7df840a4e999097353ff4c7d
+    m_Address: kitchenCabinetUpper Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: f418273523d46ad4190da49eedb4a05d
-    m_Address: top Variant
+  - m_GUID: a776b1fb3bff507498d838d6d27cb995
+    m_Address: floorFull Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: df4b618dad4800e448eb27badc52ebc2
-    m_Address: top-large Variant
+  - m_GUID: f79709f342ab25c46a3acc325a6e5b6a
+    m_Address: sideTable Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 44a2199fd2f56e741b4fd50bb4ded070
+    m_Address: toilet Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 69cca1244fa73d44689e3fc78c43a331
+    m_Address: computerScreen Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 13dec1552a3033e47be060793ab8ff40
+    m_Address: bathroomCabinetDrawer Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 76e6c43f65e4ade4b9a3f0a83349109f
+    m_Address: bear Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6885e55a799cd1f4f8c9d6d7d7b92c71
+    m_Address: sideTableDrawers Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8c40f8278f2c07449b8b7edac46dc7a9
+    m_Address: rugRound Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 261dd2545dca0a14ba944b9888118bd2
+    m_Address: toiletSquare Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ba475cb2d3143f24a9677f97ff09893b
+    m_Address: chairRounded Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 888350dfaec0dcd479fdab29af1251b0
+    m_Address: doorwayFront Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1420aa8c536884f4aaa10426dd78d53e
+    m_Address: wallDoorway Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 263437bbb38251f439d60c095cc2961d
+    m_Address: washerDryerStacked Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 08c6fb5cd037d1341a31f0ca09e9de3f
+    m_Address: hoodModern Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 17a35b206c429fa4e8baaa2abff826d7
+    m_Address: cabinetTelevisionDoors Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 01ddec31b3927744fb68c53d9300818e
+    m_Address: tableCloth Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 13c22b31501048b4daf0649ca637512a
+    m_Address: bathroomCabinet Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cf8673db9f09bbb4eb0b199a83079d94
+    m_Address: tableCoffeeSquare Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fce5fd9ee93be724688478b22812e93e
+    m_Address: televisionModern Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a5ba0eb41019f214d9cec14c81e41de0
+    m_Address: kitchenCabinetCornerInner Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5e880fdbedfec55409b2872799959d0e
+    m_Address: tableCrossCloth Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d07fb2dab5915df43af0221d62dd70a5
+    m_Address: speaker Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9288b4855b5a666439c7e00850c47f19
+    m_Address: bedBunk Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7265acae93b6a044ab9c106ebeebee6b
+    m_Address: doorwayOpen Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cb5af89b6ac508f4392888f49587a6a2
+    m_Address: computerKeyboard Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0dcd10fc8bd9e294d9d7425804b4d335
+    m_Address: bench Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 879c6ed0184b2dd47a0d98b8d9b0fde0
+    m_Address: chairModernFrameCushion Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f1f690e3b8704474aa7102346b0cdc91
+    m_Address: cabinetBed Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d916e17a03f06504c97ee84089cdeb6d
+    m_Address: plantSmall1 Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 99b5e498d1eddcb42bf98bd4bf731813
+    m_Address: chair Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fa67c063b3bf85d4683f388a803975ba
+    m_Address: kitchenFridgeSmall Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 93b99d5e407607c42a96e67462288235
+    m_Address: pottedPlant Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 89a5c35826cc30141bb6d2acfb4b7f12
+    m_Address: pillowLong Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5dc1270fb3f7bad4e83f244719c5a4b5
+    m_Address: benchCushionLow Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 64fbde7e25bcdbe48bfa52c2a70eeef9
+    m_Address: table Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 88bb1ce29c88134498be13faeec86fea
+    m_Address: cabinetBedDrawerTable Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b27dd6d63eb16c34cbce61391075e7e9
+    m_Address: tableCoffeeGlass Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 48418912f7ee1d34fadf0d1c0aa55058
+    m_Address: kitchenCabinetUpperCorner Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1640fe69bb882fb4ca9a807c6dd1425f
+    m_Address: wallWindowSlide Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 52c73c270b196e847af6e7c7179e0787
+    m_Address: kitchenFridge Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2c8373df6a048084fa26a2c75e5b6f2b
+    m_Address: loungeSofaLong Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 09766739bdba28346b917f0bb0880180
+    m_Address: kitchenCabinetUpperDouble Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 231bbe12bcba460468dcde5ec37073ea
+    m_Address: deskCorner Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0314fb9fa7b533b478d7e2f7072d3be3
+    m_Address: lampRoundFloor Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 264dc65605e091e4eb9f2f66c8792d73
+    m_Address: tableGlass Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 720ea30e337aec64199b3c685c5d19a6
+    m_Address: wallHalf Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b01c9308657ddc84694aeeadd53546a6
+    m_Address: pillowBlueLong Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3441d416fb0b1f24188e39b48274b6e6
+    m_Address: wall Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f5e926a3a4eb71e42a6b289a910c1ef9
+    m_Address: tableCoffeeGlassSquare Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cc302d81990a69747bc3307aa9393797
+    m_Address: pillowBlue Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9b8d3df58f6174943aad7c4af83ca164
+    m_Address: showerRound Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c7111b2b723cf8b4396204635b8148cf
+    m_Address: cabinetTelevision Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bc89741eba56e5b46ac2a3a25436adf5
+    m_Address: wallCornerRond Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5f0f5938b6f848042aa6ac37ccc27c04
+    m_Address: bookcaseClosedDoors Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a9c75f2bca6c41a439bf06ac434107d7
+    m_Address: bookcaseOpenLow Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a81503be5ed600f4ca3f8a0bc7653058
+    m_Address: washer Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c3a06d962df2aa348aeb294a089f6976
+    m_Address: rugRectangle Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5c2782575b5710d4f977fbca4758551e
+    m_Address: kitchenStoveElectric Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ba4aabbb8427e094a939ff4d5c8cdbb3
+    m_Address: chairDesk Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8d618fc21fb6dcb418022dabecb4f1fc
+    m_Address: cardboardBoxClosed Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d50f5d9ee3ec83d4b924f53ec2cd5f17
+    m_Address: doorway Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 999c1fb861148ea44ba59de430e2398d
+    m_Address: kitchenFridgeBuiltIn Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 24c68bb2513316741af11a404c276fb8
+    m_Address: bookcaseClosed Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 98ff1dc8c3556b44a84620b52f5c0843
+    m_Address: dryer Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8c2b03e036a199b4db48264d4daf8a9a
+    m_Address: televisionVintage Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 828864c72deebe645896bfa951ecea84
+    m_Address: tableRound Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3d180fda3ffd5c64a862bed9551e05b4
+    m_Address: paneling Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0cfe9e2d214318746a52d3c52b291143
+    m_Address: desk Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6984d69e3322186438b546e36978b680
+    m_Address: stairsCorner Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f6c8afc568a594a4d961ba1bb77c2489
+    m_Address: loungeSofaCorner Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 61aac0020906810428b59b6de0908b89
+    m_Address: chairModernCushion Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6c676c2cb034ad145bc4b7d8460ac692
+    m_Address: trashcan Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 92bc66124f8ca7347967455aec3d8dfb
+    m_Address: kitchenSink Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d2933dd98ba20024283f034bc15a9499
+    m_Address: kitchenBar Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 59db2bc5dcdc40047b8a26983bfce265
+    m_Address: stairs Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8494a4600aa74514c9a9ba2a96cd71b3
+    m_Address: cabinetBedDrawer Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a44b429a67a6edd47addf35ba21e1aa0
+    m_Address: plantSmall2 Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f27ce614b44ff8e46b843624b0a9da77
+    m_Address: kitchenBlender Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4df1daa443dc5be45bf1a7883d37326a
+    m_Address: wallWindow Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f2781e0f3ea85d24e94cbd3e4e213db7
+    m_Address: laptop Variant
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - placeable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1618819bc1d59c3458a57f17d262bcc6
+    m_Address: kitchenCabinetUpperLow Variant
     m_ReadOnly: 0
     m_SerializedLabels:
     - placeable

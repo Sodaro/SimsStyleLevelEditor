@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bd32571c19591348b63f05fca200aca, type: 3}
+  m_Name: speakerSmall Variant
+  m_EditorClassIdentifier: 
+  Prefab: {fileID: 6939601376273471964, guid: 27bf5eb665e0f6547b58f42b4da5543b, type: 3}
+  Sprite: {fileID: 21300000, guid: 2d069a0f81724d342b9bdc98c02376c1, type: 3}

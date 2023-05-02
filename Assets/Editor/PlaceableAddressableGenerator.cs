@@ -1,47 +1,101 @@
+using NUnit.Framework;
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
+using Unity.EditorCoroutines.Editor;
 using UnityEditor;
 using UnityEditor.AddressableAssets;
 using UnityEditor.AddressableAssets.Settings;
+using UnityEditor.VersionControl;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
 public class PlaceableAddressableGenerator : MonoBehaviour
 {
-    [MenuItem("PlaceableAddressableGenerator/Extract preview images from folder")]
-    static void ExtractPreviewImages()
+    [MenuItem("PlaceableAddressableGenerator/Generate Placeables")]
+    static async void ExtractPreviewImages()
     {
-        string extractionPath = EditorUtility.OpenFolderPanel("Select Folder to extract from", Application.dataPath, "");
+        string prefabDirectory = EditorUtility.OpenFolderPanel("Select prefab directory", Application.dataPath, "");
+        if (string.IsNullOrEmpty(prefabDirectory))
+        {
+            return;
+        }
+
+        string extractionPath = EditorUtility.OpenFolderPanel("Preview-Image destination folder", Application.dataPath, "");
         if (string.IsNullOrEmpty(extractionPath))
         {
             return;
         }
 
-        string targetPath = EditorUtility.OpenFolderPanel("Select Folder to extract to", Application.dataPath, "");
-        if (string.IsNullOrEmpty(targetPath))
+        string scriptablePath = EditorUtility.OpenFolderPanel("Select Folder to store ScriptableObjects in", Application.dataPath, "");
+        if (string.IsNullOrEmpty(scriptablePath))
         {
             return;
         }
 
-        var assetPath = "Assets" + extractionPath.Replace(Application.dataPath, "");
+        var assetPath = "Assets" + prefabDirectory.Replace(Application.dataPath, "");
         string[] guids = AssetDatabase.FindAssets("", new[] { assetPath });
-        foreach (string str in guids)
+        var data = await FetchPreviews(guids, extractionPath);
+        GeneratePlaceables(data, scriptablePath);
+    }
+
+    static async Task<List<(string, string)>> FetchPreviews(string[] guids, string extractionPath)
+    {
+        var objectSpritePaths = new List<(string, string)>();
+        int progressID = Progress.Start("Running Image Extractor...");
+        for (int i = 0; i < guids.Length; i++)
         {
+            var str = guids[i];
             var tempPath = AssetDatabase.GUIDToAssetPath(str);
-            var obj = AssetDatabase.LoadAssetAtPath<Object>(tempPath);
+            var obj = AssetDatabase.LoadAssetAtPath<UnityEngine.Object>(tempPath);
             var texture = AssetPreview.GetAssetPreview(obj);
+            Progress.Report(progressID, (float)i / guids.Length, $"Extracting asset image: {obj.name}");
+            int max = 1000;
+            int count = 0;
+            while (texture == null && count < max)
+            {
+                texture = AssetPreview.GetAssetPreview(obj);
+                count++;
+                await System.Threading.Tasks.Task.Yield();
+            }
             if (texture == null)
                 continue;
             var bytes = texture.EncodeToPNG();
-            var objPath = targetPath + "/" + obj.name + ".png";
+            var objPath = extractionPath + "/" + obj.name + ".png";
             File.WriteAllBytes(objPath, bytes);
             var assetpath = "Assets" + objPath.Replace(Application.dataPath, "");
             AssetDatabase.ImportAsset(assetpath);
             TextureImporter importer = AssetImporter.GetAtPath(assetpath) as TextureImporter;
             importer.textureType = TextureImporterType.Sprite;
             AssetDatabase.WriteImportSettingsIfDirty(assetpath);
+
+            objectSpritePaths.Add((tempPath, assetpath));
         }
+        
+        Progress.Remove(progressID);
+        AssetDatabase.Refresh();
+        return objectSpritePaths;
+    }
+
+    static void GeneratePlaceables(List<(string, string)> objectSpritePaths, string scriptableObjPath)
+    {
+        foreach (var objectSpritePath in objectSpritePaths)
+        {
+            var obj = AssetDatabase.LoadAssetAtPath<GameObject>(objectSpritePath.Item1);
+            var scriptableObjAssetPath = $"Assets/{scriptableObjPath.Replace(Application.dataPath, "")}/{obj.name}.asset";
+            var scriptableObj = ScriptableObject.CreateInstance<PlaceableScriptableObject>();
+            var sprite = AssetDatabase.LoadAssetAtPath<Sprite>(objectSpritePath.Item2);
+            scriptableObj.Sprite = sprite;
+            scriptableObj.Prefab = obj;
+            AssetDatabase.CreateAsset(scriptableObj, scriptableObjAssetPath);
+        }
+        AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
     }
+
     [MenuItem("PlaceableAddressableGenerator/Make files in folder addressable")]
     static void AddPlaceablesToAddressableGroup()
     {
@@ -76,7 +130,7 @@ public class PlaceableAddressableGenerator : MonoBehaviour
         entry.SetLabel(label, true);
         entry.SetAddress(Path.GetFileNameWithoutExtension(entry.address));
     }
-    public static AssetReference AddAssetToAddressables(Object asset, string label)
+    public static AssetReference AddAssetToAddressables(UnityEngine.Object asset, string label)
     {
         AddressableAssetSettings settings = AddressableAssetSettingsDefaultObject.Settings;
         string assetPath = AssetDatabase.GetAssetPath(asset);
