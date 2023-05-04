@@ -15,6 +15,8 @@ using UnityEngine.AddressableAssets;
 
 public class PlaceableAddressableGenerator : MonoBehaviour
 {
+    static int fetchProgressID = 0;
+    static int generationProgressID = 0;
     [MenuItem("PlaceableAddressableGenerator/Generate Placeables")]
     static async void ExtractPreviewImages()
     {
@@ -45,14 +47,14 @@ public class PlaceableAddressableGenerator : MonoBehaviour
     static async Task<List<(string, string)>> FetchPreviews(string[] guids, string extractionPath)
     {
         var objectSpritePaths = new List<(string, string)>();
-        int progressID = Progress.Start("Running Image Extractor...");
+        fetchProgressID = Progress.Start("Running Image Extractor...");
         for (int i = 0; i < guids.Length; i++)
         {
             var str = guids[i];
             var tempPath = AssetDatabase.GUIDToAssetPath(str);
             var obj = AssetDatabase.LoadAssetAtPath<UnityEngine.Object>(tempPath);
             var texture = AssetPreview.GetAssetPreview(obj);
-            Progress.Report(progressID, (float)i / guids.Length, $"Extracting asset image: {obj.name}");
+            Progress.Report(fetchProgressID, (float)i / guids.Length, $"Extracting asset image: {obj.name}");
             int max = 1000;
             int count = 0;
             while (texture == null && count < max)
@@ -74,24 +76,28 @@ public class PlaceableAddressableGenerator : MonoBehaviour
 
             objectSpritePaths.Add((tempPath, assetpath));
         }
-        
-        Progress.Remove(progressID);
+        Progress.Finish(fetchProgressID, Progress.Status.Succeeded);
         AssetDatabase.Refresh();
         return objectSpritePaths;
     }
 
-    static void GeneratePlaceables(List<(string, string)> objectSpritePaths, string scriptableObjPath)
+    static async void GeneratePlaceables(List<(string, string)> objectSpritePaths, string scriptableObjPath)
     {
-        foreach (var objectSpritePath in objectSpritePaths)
+        generationProgressID = Progress.Start("Generating Placeables...");
+        for (int i = 0; i < objectSpritePaths.Count; i++)
         {
+            var objectSpritePath = objectSpritePaths[i];
             var obj = AssetDatabase.LoadAssetAtPath<GameObject>(objectSpritePath.Item1);
             var scriptableObjAssetPath = $"Assets/{scriptableObjPath.Replace(Application.dataPath, "")}/{obj.name}.asset";
             var scriptableObj = ScriptableObject.CreateInstance<PlaceableScriptableObject>();
             var sprite = AssetDatabase.LoadAssetAtPath<Sprite>(objectSpritePath.Item2);
             scriptableObj.Sprite = sprite;
             scriptableObj.Prefab = obj;
+            Progress.Report(generationProgressID, (float)i / objectSpritePaths.Count, $"Generating PlaceableScriptable: {obj.name}.asset");
             AssetDatabase.CreateAsset(scriptableObj, scriptableObjAssetPath);
+            await System.Threading.Tasks.Task.Yield();
         }
+        Progress.Finish(generationProgressID, Progress.Status.Succeeded);
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
     }

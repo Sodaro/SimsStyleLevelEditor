@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 public struct BuildOptions
 {
     public enum PlacementRules { GridCenter, GridLines };
-    public enum PlacementMode { HollowRectangle, FilledRectangle};
+    public enum PlacementMode { Line, HollowRectangle, FilledRectangle};
     public PlacementMode ActivePlacementMode;
     public PlacementRules ActivePlacementRules;
     public bool DeleteOverlappingObjects;
@@ -88,15 +88,26 @@ public class PlacementGrid : MonoBehaviour
             _buildOptions.ActivePlacementMode = BuildOptions.PlacementMode.FilledRectangle;
         }
     }
+    private void OnLinePlacementToggleValueChanged(bool value)
+    {
+        if (value)
+        {
+            _buildOptions.ActivePlacementMode = BuildOptions.PlacementMode.Line;
+        }
+    }
+
     private void OnDeleteOverlappingToggleValueChanged(bool value) => _buildOptions.DeleteOverlappingObjects = value;
 
     private void OnEnable()
     {
         _toolbar.OptionsDropdown.onValueChanged.AddListener(OnOptionsDropdownValueChanged);
+        _toolbar.PlaceLineToggle.onValueChanged.AddListener(OnLinePlacementToggleValueChanged);
         _toolbar.PlaceHollowRectangleToggle.onValueChanged.AddListener(OnHollowRectanglePlacementToggleValueChanged);
         _toolbar.PlaceFilledRectangleToggle.onValueChanged.AddListener(OnFilledRectanglePlacementToggleValueChanged);
         _toolbar.DeleteOverlapToggle.onValueChanged.AddListener(OnDeleteOverlappingToggleValueChanged);
     }
+
+
 
     private void OnDisable()
     {
@@ -225,6 +236,7 @@ public class PlacementGrid : MonoBehaviour
                 PlaceFilledRectangle(start, end, ref placedObjects);
                 break;
             default:
+                PlaceRow(start, end, ref placedObjects);
                 break;
         }
         if (placedObjects.Count > 0)

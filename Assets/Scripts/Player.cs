@@ -68,6 +68,10 @@ public class Player : MonoBehaviour
 
     private void UpdateHeight()
     {
+        if (!InputHandler.Instance.PlayerGameplayActions.HeightChange.WasPressedThisFrame())
+        {
+            return;
+        }
         float heightChange = InputHandler.Instance.PlayerGameplayActions.HeightChange.ReadValue<float>();
         if (heightChange > 0)
         {
